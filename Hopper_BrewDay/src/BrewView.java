@@ -38,7 +38,9 @@ public class BrewView extends JFrame {
 		
 		JButton buttonBack = new JButton("Home");
 		buttonBack.setFont(new Font("Bahnschrift", Font.BOLD, 14));
+		buttonBack.setBackground(new Color(160, 82, 45));
 		buttonBack.setBounds(902, 559, 93, 23);
+		buttonBack.setForeground(new Color(255, 255, 240));
 		contentPane.add(buttonBack);
 		
 		JLabel time = new JLabel();
@@ -83,55 +85,8 @@ public class BrewView extends JFrame {
 		bgp.setIcon(new ImageIcon("images\\beer.jpg"));
 		bgp.setBounds(0, 0, 1042, 617);
 		contentPane.add(bgp);
-		
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		buttonBack.addActionListener(new ActionListener() {
-			private HomeModel hm;
-			private HomeController hc;
-
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-				dispose();
-				new HomeView(hm, hc);
-				}
-			});
-		brewButton.addActionListener(new ActionListener() {
 		
-			private BrewModel bm =new BrewModel(null,null);
-			private BrewController bc = new BrewController(bm);
-			@Override
-				public void actionPerformed(ActionEvent e) {
-					
-					
-					//check
-					String input = editorPane_3.getText().toString();
-					char[] inputchar = input.toCharArray();
-					int length = 0;
-					for(int count = 0;count<inputchar.length;count++) {
-						int check = 0;
-						if((inputchar[count] >='0')&&(inputchar[count]<='9')) {
-							length++;
-						}
-						else if((inputchar[count]=='.')&&(count>0)&&(count<inputchar.length-1)&&(check==0)) {
-							length++;
-							check =1;
-						}
-						
-					}
-					 if(length<inputchar.length) {
-				        	new BrewInputWarning();
-				    }else{
-				
-						bm.setBatchSize(Double.valueOf(editorPane_3.getText()));
-					
-						// Controller decides what the click means.
-						dispose();
-					
-						//m.setBatchSize(Double.valueOf(editorPane_3.getText()));
-						
-						new BrewSelectView(bm,bc);}
-				}
-			});
 	}
 }

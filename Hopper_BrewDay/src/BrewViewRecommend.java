@@ -96,33 +96,9 @@ public class BrewViewRecommend extends JFrame {
 		btnBrewButton.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btnBrewButton.setBounds(428, 529, 184, 49);
 		contentPane.add(btnBrewButton);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
-		
-		buttonBack.addActionListener(new ActionListener() {
-			private HomeModel hm;
-			private HomeController hc;
-			
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-				dispose();
-				new HomeView(hm, hc);
-				}
-			});
-		btnBrewButton.addActionListener(new ActionListener() {
-			
-			
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-					RecipeModel recommandrecipe = c.StringtoRecipe(String.valueOf(list.getSelectedValue()));
-					m.setRecipe(recommandrecipe);
-					BrewController.updateAmount(c.sub(recommandrecipe));
-					dispose();
-					new RecommandRecipeView(m,c);
-				}
-			});
 		
 	}
 	

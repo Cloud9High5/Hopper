@@ -45,71 +45,7 @@ public class BrewSelectView extends JFrame {
 		contentPane.add(btnBack);
 		
 		this.setVisible(true);
-		RecommandButton.addActionListener(new ActionListener() {
-			//private BrewModel bm;
-			
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-			
-				
-				ArrayList<RecipeModel> recommandRecipe = c.recommand();
-				
-				
-				if(recommandRecipe == null) {
-					
-					
-				}else {
-					
-					m.setRecommandRecipe(recommandRecipe);
-					
-					
-				}
-				//System.out.println(m.getBatchSize());
-				
-				dispose();
-				new BrewViewRecommend(m, c);
-			}
-		
-		});
-		Missingbutton.addActionListener(new ActionListener() {
-			//private BrewModel bm;
-			//private BrewController bc;
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				 
-				ArrayList<RecipeModel> MissingRecipe = c.missing();
-				
-				if(MissingRecipe == null) {
-					
-					
-				}else {
-					
-					m.setRecommandRecipe(MissingRecipe);
-					
-					
-				}
-				
-				dispose();
-					
-				new BrewViewMissing(m, c);
-				}
-		
-		});
-		btnBack.addActionListener(new ActionListener() {
-			private HomeModel hm;
-			private HomeController hc;
-
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-				dispose();
-				new HomeView(hm, hc);
-				}
-			});
 	}
-	
 	
 }

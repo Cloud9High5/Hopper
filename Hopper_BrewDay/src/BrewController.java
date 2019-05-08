@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -262,8 +261,6 @@ public class BrewController {
 		ArrayList<RecipeModel> recipe = new ArrayList<RecipeModel>();
 		Connection conn = MyDBUtil.getConn();
 	    String sql = "select * from recipe where Rid in ("+nums+")";
-	    //String[] line = new String[100];
-	    int i = 1;
 	    PreparedStatement pstmt;
 	    try {
 	    	
@@ -271,7 +268,6 @@ public class BrewController {
 	        pstmt = (PreparedStatement)conn.prepareStatement(sql);
 	        
 	        ResultSet rs = pstmt.executeQuery();
-	        int col = rs.getMetaData().getColumnCount();
 	        //create another array
 	        rs.last();
 	        int row = rs.getRow();
