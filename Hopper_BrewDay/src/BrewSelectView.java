@@ -45,7 +45,7 @@ public class BrewSelectView extends JFrame {
 		contentPane.add(btnBack);
 		
 		this.setVisible(true);
-
 	}
+	
 	
 }

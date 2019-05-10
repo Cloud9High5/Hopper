@@ -10,7 +10,6 @@ public class BrewModel {
 	private Date date ;
 	private Date time;
 	
-	private NoteModel note;
 	private RecipeModel recipe;
 	private ArrayList<RecipeModel> recommandrecipeList;
 	//private storageIngredient ingredient;

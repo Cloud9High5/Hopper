@@ -87,6 +87,5 @@ public class BrewView extends JFrame {
 		contentPane.add(bgp);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
 	}
 }

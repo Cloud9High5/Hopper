@@ -106,5 +106,80 @@ public class EquipmentView extends JFrame{
 		contentPane.add(bgp);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		buttonBack.addActionListener(new ActionListener() {
+			private HomeModel hm;
+			private HomeController hc;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new HomeView(hm, hc);
+				}
+			});
+		btnAdd.addActionListener(new ActionListener() {
+			private EquipmentModel em;
+			private EquipmentController ec;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				new EquipmentViewAdd(em, ec);
+				}
+			});
+		btnUpdate.addActionListener(new ActionListener() {
+			private EquipmentModel em;
+			private EquipmentController ec;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				int id = 0;
+				int i = 0;
+				int counter = 0;
+				String str=list_1.getSelectedValue().toString();
+				char[] c = str.toCharArray();
+				
+				for(i = 0; i < c.length; i++) {
+					if(c[i] == ' ') {
+						counter = i;
+						break;
+					}
+				}
+				String s = "";
+				for(i = 0; i < counter; i++) {
+					s = s + c[i];
+				}
+				id = Integer.parseInt(s);
+				new EquipmentViewUpdate(em, ec, id);
+				}
+			});
+		btnDelete.addActionListener(new ActionListener() {
+			private EquipmentModel em;
+			private EquipmentController ec;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				int id = 0;
+				int i = 0;
+				int counter = 0;
+				String str=list_1.getSelectedValue().toString();
+				char[] c = str.toCharArray();
+				
+				for(i = 0; i < c.length; i++) {
+					if(c[i] == ' ') {
+						counter = i;
+						break;
+					}
+				}
+				String s = "";
+				for(i = 0; i < counter; i++) {
+					s = s + c[i];
+				}
+				System.out.print(s);
+				id = Integer.parseInt(s);
+				EquipmentController.deleteEquipment(id);
+				list_1.setListData(EquipmentController.getAllEquipment());
+				}
+			});
 	}
 }

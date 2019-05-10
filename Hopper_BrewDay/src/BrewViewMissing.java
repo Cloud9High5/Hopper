@@ -2,7 +2,6 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.AbstractListModel;
 import javax.swing.JButton;
@@ -16,7 +15,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class BrewViewRecommend extends JFrame {
+public class BrewViewMissing extends JFrame {
 
 	/**
 	 * 
@@ -25,7 +24,7 @@ public class BrewViewRecommend extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 
-	public BrewViewRecommend(BrewModel m,BrewController c) {
+	public BrewViewMissing(BrewModel m,BrewController c) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1048, 646);
@@ -35,8 +34,8 @@ public class BrewViewRecommend extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Recommend a recipe:");
-		lblNewLabel.setFont(new Font("Bahnschrift", Font.BOLD, 26));
+		JLabel lblNewLabel = new JLabel(" Recipe With Missing Ingredient:");
+		lblNewLabel.setFont(new Font("Bahnschrift", Font.BOLD, 18));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(47, 60, 286, 62);
 		contentPane.add(lblNewLabel);
@@ -62,14 +61,10 @@ public class BrewViewRecommend extends JFrame {
 		buttonBack.setFont(new Font("Bahnschrift", Font.BOLD, 14));
 		buttonBack.setBounds(902, 559, 93, 23);
 		contentPane.add(buttonBack);
-	
+		
 		JList list = new JList();
 		list.setModel(new AbstractListModel() {
-			
-			
-			
 			String[] values =c.getRecipeString();
-			
 			public int getSize() {
 				if(values == null) {
 					return 0;
@@ -87,19 +82,12 @@ public class BrewViewRecommend extends JFrame {
 		});
 		scrollPane.setViewportView(list);
 		
-		JButton btnNewButton1 = new JButton("Brew");
-		btnNewButton1.setFont(new Font("Bahnschrift", Font.BOLD, 15));
-		btnNewButton1.setBounds(830, 150, 130, 49);
-		contentPane.add(btnNewButton1);
-		
-		JButton btnBrewButton = new JButton("Brew  This  One");
-		btnBrewButton.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		btnBrewButton.setBounds(428, 529, 184, 49);
-		contentPane.add(btnBrewButton);
+		JButton btnMissing = new JButton("Check Missing Ingredient");
+		btnMissing.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+		btnMissing.setBounds(315, 526, 361, 49);
+		contentPane.add(btnMissing);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
-		
-		
 	}
 	
 }
