@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -33,7 +31,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class RecipeView extends JFrame{
+public class RecommandRecipeView extends JFrame{
 	/**
 	 * 
 	 */
@@ -51,7 +49,7 @@ public class RecipeView extends JFrame{
 	 */
 	DefaultListModel<String> listmodel = new DefaultListModel<String>() ;
 	
-	public RecipeView(RecipeModel m, RecipeController c) {
+	public RecommandRecipeView(BrewModel m, BrewController c) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Recipe");
@@ -87,8 +85,21 @@ public class RecipeView extends JFrame{
 		lblMalts.setBounds(40, 188, 63, 21);
 		panel.add(lblMalts);
 		
+		//get recipe
+		RecipeModel recipe = m.getRecipe();
+		Double[] amounts =c.convert(recipe);
+		
+    	recipe.setWaterQuantity(amounts[0]);
+    	recipe.setMaltQuantity(amounts[1]);
+    	recipe.setHopQuantity(amounts[2]);
+    	recipe.setYeastQuantity(amounts[3]);
+    	recipe.setSugarQuantity(amounts[4]);
+    	recipe.setAdditiveQuantity(amounts[5]);
+		
 		textWater = new JTextField();
 		textWater.setBounds(113, 142, 33, 31);
+		textWater.setEditable(false);
+		textWater.setText(String.valueOf(recipe.getWaterQuantity()));
 		panel.add(textWater);
 		textWater.setColumns(10);
 		
@@ -101,6 +112,8 @@ public class RecipeView extends JFrame{
 		textMalt = new JTextField();
 		textMalt.setColumns(10);
 		textMalt.setBounds(113, 182, 33, 31);
+		textMalt.setEditable(false);
+		textMalt.setText(String.valueOf(recipe.getMaltQuantity()));
 		panel.add(textMalt);
 		
 		JLabel lblYeasts = new JLabel("Yeasts");
@@ -112,6 +125,8 @@ public class RecipeView extends JFrame{
 		textHop = new JTextField();
 		textHop.setColumns(10);
 		textHop.setBounds(387, 143, 33, 31);
+		textHop.setEditable(false);
+		textHop.setText(String.valueOf(recipe.getHopQuantity()));
 		panel.add(textHop);
 		
 		JLabel lblSugars = new JLabel("Sugars");
@@ -123,6 +138,8 @@ public class RecipeView extends JFrame{
 		textYeast = new JTextField();
 		textYeast.setColumns(10);
 		textYeast.setBounds(387, 180, 33, 31);
+		textYeast.setEditable(false);
+		textYeast.setText(String.valueOf(recipe.getYeastQuantity()));
 		panel.add(textYeast);
 		
 		JLabel lblAdditives = new JLabel("Additives");
@@ -134,9 +151,11 @@ public class RecipeView extends JFrame{
 		textAdditive = new JTextField();
 		textAdditive.setColumns(10);
 		textAdditive.setBounds(669, 183, 33, 31);
+		textAdditive.setEditable(false);
+		textAdditive.setText(String.valueOf(recipe.getAdditiveQuantity()));
 		panel.add(textAdditive);
 		
-		JLabel label = new JLabel("%");
+		JLabel label = new JLabel("kg");
 		label.setForeground(new Color(255, 255, 240));
 		label.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		label.setBounds(158, 142, 33, 21);
@@ -151,33 +170,35 @@ public class RecipeView extends JFrame{
 		textSugar = new JTextField();
 		textSugar.setColumns(10);
 		textSugar.setBounds(669, 145, 33, 31);
+		textSugar.setEditable(false);
+		textSugar.setText(String.valueOf(recipe.getSugarQuantity()));
 		panel.add(textSugar);
 		
-		JLabel label_1 = new JLabel("%");
+		JLabel label_1 = new JLabel("kg");
 		label_1.setForeground(new Color(255, 255, 240));
 		label_1.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		label_1.setBounds(156, 183, 33, 21);
 		panel.add(label_1);
 		
-		JLabel label_2 = new JLabel("%");
+		JLabel label_2 = new JLabel("kg");
 		label_2.setForeground(new Color(255, 255, 240));
 		label_2.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		label_2.setBounds(430, 148, 33, 21);
 		panel.add(label_2);
 		
-		JLabel label_3 = new JLabel("%");
+		JLabel label_3 = new JLabel("kg");
 		label_3.setForeground(new Color(255, 255, 240));
 		label_3.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		label_3.setBounds(430, 189, 33, 21);
 		panel.add(label_3);
 		
-		JLabel label_4 = new JLabel("%");
+		JLabel label_4 = new JLabel("kg");
 		label_4.setForeground(new Color(255, 255, 240));
 		label_4.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		label_4.setBounds(712, 155, 33, 21);
 		panel.add(label_4);
 		
-		JLabel label_5 = new JLabel("%");
+		JLabel label_5 = new JLabel("kg");
 		label_5.setForeground(new Color(255, 255, 240));
 		label_5.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		label_5.setBounds(712, 188, 33, 21);
@@ -194,21 +215,16 @@ public class RecipeView extends JFrame{
 		textName.setFont(new Font("Bahnschrift", Font.BOLD, 24));
 		textName.setColumns(10);
 		textName.setBounds(421, 20, 164, 50);
+		textName.setEditable(false);
+		textName.setText(recipe.getName());
 		panel.add(textName);
 		
-		JLabel lblAmountsMustEqual = new JLabel("Amounts must equal to 100%");
-		lblAmountsMustEqual.setForeground(new Color(255, 255, 240));
-		lblAmountsMustEqual.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAmountsMustEqual.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		lblAmountsMustEqual.setBounds(274, 295, 323, 21);
-		panel.add(lblAmountsMustEqual);
-		
-		JButton btnCreate = new JButton("Create");
+		/*JButton btnCreate = new JButton("Create");
 		btnCreate.setFont(new Font("Bahnschrift", Font.BOLD, 19));
 		btnCreate.setBounds(443, 515, 156, 51);
 		btnCreate.setForeground(new Color(255, 255, 240));
 		btnCreate.setBackground(new Color(160, 82, 45));
-		contentPane.add(btnCreate);
+		contentPane.add(btnCreate);*/
 		
 		JButton btnCheckList = new JButton("Check List");
 		btnCheckList.setForeground(new Color(255, 255, 240));
@@ -228,55 +244,11 @@ public class RecipeView extends JFrame{
 		bgp.setIcon(new ImageIcon("images\\beer.jpg"));
 		bgp.setBounds(0, 0, 1042, 617);
 		contentPane.add(bgp);
-		this.setLocationRelativeTo(null);
 		//set visible
 		this.setVisible(true);
 		
-		buttonBack.addActionListener(new ActionListener() {
-			private HomeModel hm;
-			private HomeController hc;
 
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-				dispose();
-				new HomeView(hm, hc);
-				}
-			});
-		btnCheckList.addActionListener(new ActionListener() {
-			private RecipeModel rm;
-			private RecipeController rc;
-
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-				dispose();
-				new RecipeViewCreate(rm, rc);
-				}
-			});
-		btnCreate.addActionListener(new ActionListener() {
-			private NoteModel nm;
-			private NoteController nc;
-			private RecipeModel rm;
-			private RecipeController rc;
-
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				// Controller decides what the click means.
-				try {
-					RecipeController.insertRecipe(new RecipeModel(textName.getText(),
-							Double.parseDouble(textWater.getText()),Double.parseDouble(textMalt.getText()),
-							Double.parseDouble(textHop.getText()),Double.parseDouble(textYeast.getText()),
-							Double.parseDouble(textSugar.getText()),Double.parseDouble(textAdditive.getText())));
-					dispose();
-					new RecipeViewCreate(rm, rc);
-					new RecipeViewNote(nm, nc, null);
-			    } catch (NumberFormatException ne) {
-			    	//new WarningViewBlank();
-			        ne.printStackTrace();
-			    }
-				}
-			});
+		
 	}
 	
 }

@@ -62,12 +62,6 @@ public class EquipmentViewUpdate extends JFrame{
 		contentPane.add(lblL);
 		this.setVisible(true);
 		
-		btnFinish.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//update
-				EquipmentController.updateEquipment(new EquipmentModel(textField.getText(),Double.parseDouble(textField_1.getText())), Eid);
-				dispose();
-			}
-		});
+
 	}
 }

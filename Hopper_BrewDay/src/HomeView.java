@@ -87,6 +87,61 @@ public class HomeView extends JFrame{
 		contentPane.add(lblNewLabel);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
+		button1.addActionListener(new ActionListener() {
+		private RecipeModel rm;
+		private RecipeController rc;
+
+		@Override
+			public void actionPerformed(ActionEvent e) {
+			 // Controller decides what the click means.
+			dispose();
+			new RecipeView(rm, rc);
+			}
+		});
+		button2.addActionListener(new ActionListener() {
+			private IngredientModel im;
+			private IngredientController ic;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new IngredientView(im, ic);
+				}
+			});
+		button3.addActionListener(new ActionListener() {
+			private BrewModel bm;
+			private BrewController bc;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new BrewView(bm, bc);
+				}
+			});
+		button4.addActionListener(new ActionListener() {
+			private EquipmentModel em;
+			private EquipmentController ec;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new EquipmentView(em, ec);
+				}
+			});
+		button5.addActionListener(new ActionListener() {
+			private NoteModel nm;
+			private NoteController nc;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new NoteView(nm, nc);
+				}
+			});
     }
 	
 }

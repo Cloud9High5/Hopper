@@ -1,39 +1,20 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Panel;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
 
-import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class RecipeView extends JFrame{
+public class RecipeViewUpdate extends JFrame{
 	/**
 	 * 
 	 */
@@ -49,11 +30,10 @@ public class RecipeView extends JFrame{
 	/**
 	 * Create the frame.
 	 */
-	DefaultListModel<String> listmodel = new DefaultListModel<String>() ;
 	
-	public RecipeView(RecipeModel m, RecipeController c) {
+	public RecipeViewUpdate(RecipeModel m, RecipeController c, Integer Rid) {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Recipe");
 		setBounds(100, 100, 1048, 646);
 		contentPane = new JPanel();
@@ -73,14 +53,7 @@ public class RecipeView extends JFrame{
 		panel.setBounds(82, 150, 872, 354);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
-		JButton buttonBack = new JButton("Home");
-		buttonBack.setFont(new Font("Bahnschrift", Font.BOLD, 14));
-		buttonBack.setBackground(new Color(160, 82, 45));
-		buttonBack.setBounds(902, 559, 93, 23);
-		buttonBack.setForeground(new Color(255, 255, 240));
-		contentPane.add(buttonBack);
-			
+					
 		JLabel lblMalts = new JLabel("Malts");
 		lblMalts.setForeground(new Color(255, 255, 240));
 		lblMalts.setFont(new Font("Bahnschrift", Font.BOLD, 20));
@@ -203,78 +176,36 @@ public class RecipeView extends JFrame{
 		lblAmountsMustEqual.setBounds(274, 295, 323, 21);
 		panel.add(lblAmountsMustEqual);
 		
-		JButton btnCreate = new JButton("Create");
-		btnCreate.setFont(new Font("Bahnschrift", Font.BOLD, 19));
-		btnCreate.setBounds(443, 515, 156, 51);
-		btnCreate.setForeground(new Color(255, 255, 240));
-		btnCreate.setBackground(new Color(160, 82, 45));
-		contentPane.add(btnCreate);
-		
-		JButton btnCheckList = new JButton("Check List");
-		btnCheckList.setForeground(new Color(255, 255, 240));
-		btnCheckList.setFont(new Font("Bahnschrift", Font.BOLD, 19));
-		btnCheckList.setBackground(new Color(160, 82, 45));
-		btnCheckList.setBounds(813, 510, 141, 30);
-		contentPane.add(btnCheckList);
+		JButton btnFinish = new JButton("Finish");
+		btnFinish.setFont(new Font("Bahnschrift", Font.BOLD, 19));
+		btnFinish.setBounds(443, 515, 156, 51);
+		btnFinish.setForeground(new Color(255, 255, 240));
+		btnFinish.setBackground(new Color(160, 82, 45));
+		contentPane.add(btnFinish);
 		
 		JLabel time = new JLabel();
 		time.setForeground(new Color(255, 255, 240));
 		time.setFont(new Font("Bahnschrift", Font.BOLD, 18));
-		time.setBounds(830, 20, 179, 30);
+		time.setBounds(830, 20, 180, 30);
 		contentPane.add(time);
 		BrewController.setTimer(time);
-		
+				
 		JLabel bgp = new JLabel("");
 		bgp.setIcon(new ImageIcon("images\\beer.jpg"));
 		bgp.setBounds(0, 0, 1042, 617);
 		contentPane.add(bgp);
-		this.setLocationRelativeTo(null);
 		//set visible
 		this.setVisible(true);
-		
-		buttonBack.addActionListener(new ActionListener() {
-			private HomeModel hm;
-			private HomeController hc;
+		btnFinish.addActionListener(new ActionListener() {
 
 			@Override
 				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
+				 // Need Recover
+				RecipeController.updateRecipe(new RecipeModel(textName.getText(),
+						Double.parseDouble(textWater.getText()),Double.parseDouble(textMalt.getText()),
+						Double.parseDouble(textHop.getText()),Double.parseDouble(textYeast.getText()),
+						Double.parseDouble(textSugar.getText()),Double.parseDouble(textAdditive.getText())), Rid);
 				dispose();
-				new HomeView(hm, hc);
-				}
-			});
-		btnCheckList.addActionListener(new ActionListener() {
-			private RecipeModel rm;
-			private RecipeController rc;
-
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-				dispose();
-				new RecipeViewCreate(rm, rc);
-				}
-			});
-		btnCreate.addActionListener(new ActionListener() {
-			private NoteModel nm;
-			private NoteController nc;
-			private RecipeModel rm;
-			private RecipeController rc;
-
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				// Controller decides what the click means.
-				try {
-					RecipeController.insertRecipe(new RecipeModel(textName.getText(),
-							Double.parseDouble(textWater.getText()),Double.parseDouble(textMalt.getText()),
-							Double.parseDouble(textHop.getText()),Double.parseDouble(textYeast.getText()),
-							Double.parseDouble(textSugar.getText()),Double.parseDouble(textAdditive.getText())));
-					dispose();
-					new RecipeViewCreate(rm, rc);
-					new RecipeViewNote(nm, nc, null);
-			    } catch (NumberFormatException ne) {
-			    	//new WarningViewBlank();
-			        ne.printStackTrace();
-			    }
 				}
 			});
 	}
