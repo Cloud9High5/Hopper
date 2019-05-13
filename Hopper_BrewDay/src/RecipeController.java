@@ -95,19 +95,4 @@ public class RecipeController {
 	    Rid = Integer.parseInt(res);
 	    return Rid;
 	}
-	public static int deleteRecipe(Integer Rid) {
-	    Connection conn = MyDBUtil.getConn();
-	    int i = 0;
-	    String sql = "delete from recipe where Rid='" + Rid + "'";
-	    PreparedStatement pstmt;
-	    try {
-	        pstmt = (PreparedStatement) conn.prepareStatement(sql);
-	        i = pstmt.executeUpdate();
-	        pstmt.close();
-	        conn.close();
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return i;
-	}
 }

@@ -73,6 +73,14 @@ public class RecipeViewNote extends JFrame{
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		this.setVisible(true);
+		btnFinish.addActionListener(new ActionListener() {
 
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				NoteController.insertNote(new NoteModel(textField_1.getText(),textArea.getText(),new Timestamp(timemillis)), RecipeController.getNextRecipeId());
+				dispose();
+				}
+			});
 	}
 }

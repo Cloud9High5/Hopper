@@ -247,7 +247,17 @@ public class RecommandRecipeView extends JFrame{
 		//set visible
 		this.setVisible(true);
 		
+		buttonBack.addActionListener(new ActionListener() {
+			private HomeModel hm;
+			private HomeController hc;
 
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new HomeView(hm, hc);
+				}
+			});
 		
 	}
 	

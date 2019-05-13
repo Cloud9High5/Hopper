@@ -44,7 +44,31 @@ public class IngredientViewUpdate extends JFrame {
 		textAmount.setBounds(315, 87, 84, 69);
 		contentPane.add(textAmount);
 		this.setVisible(true);
+		btnNewButton.addActionListener(new ActionListener() {
+			private IngredientModel ig;
+			
+			public void actionPerformed(ActionEvent e) {
+				
+				String amount = textAmount.getText().toString();
+				
+				char[] s = amount.toCharArray();
+				int length = 0;
+		        for (int i = 0; i < s.length; i++) {
+		            if ((s[i] >= '0') && (s[i] <= '9')||(s[i]=='.')) {
+		                length++;
+		            }
 		
+		        }
+		        if(length<s.length) {
+		        	//new WarningView();
+		        }
+		        System.out.print(Double.valueOf(amount.toString()));
+		        
+				new IngredientController(ig);
+				IngredientController.updateIngredient(new IngredientModel(Double.parseDouble(textAmount.getText())), Sid);
+				dispose();
+			}
+		});
 		
 	}
 }

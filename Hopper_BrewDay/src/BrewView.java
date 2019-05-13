@@ -98,6 +98,5 @@ public class BrewView extends JFrame {
 				new HomeView(hm, hc);
 				}
 			});
-
 	}
 }

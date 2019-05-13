@@ -70,6 +70,14 @@ public class NoteViewUpdate extends JFrame {
 		textName.setColumns(10);
 		this.setVisible(true);
 		
-	
+		btnFinish.addActionListener(new ActionListener() {
+			private NoteModel nm;
+			private NoteController nc;
+			public void actionPerformed(ActionEvent e) {
+				NoteController.updateNote(new NoteModel(textName.getText(),textArea.getText(), new Timestamp(timemillis)), Nid, Rid);
+				new NoteView(nm, nc);
+				dispose();
+			}
+		});
 	}
 }
