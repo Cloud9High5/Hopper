@@ -110,6 +110,19 @@ public class BrewViewRecommend extends JFrame {
 				new HomeView(hm, hc);
 				}
 			});
+		btnBrewButton.addActionListener(new ActionListener() {
+			
+			
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+					RecipeModel recommandrecipe = c.StringtoRecipe(String.valueOf(list.getSelectedValue()));
+					m.setRecipe(recommandrecipe);
+					BrewController.updateAmount(c.sub(recommandrecipe));
+					dispose();
+					new RecommandRecipeView(m,c);
+				}
+			});
 		
 	}
 	

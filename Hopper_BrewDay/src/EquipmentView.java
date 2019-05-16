@@ -153,5 +153,33 @@ public class EquipmentView extends JFrame{
 				new EquipmentViewUpdate(em, ec, id);
 				}
 			});
+		btnDelete.addActionListener(new ActionListener() {
+			private EquipmentModel em;
+			private EquipmentController ec;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				int id = 0;
+				int i = 0;
+				int counter = 0;
+				String str=list_1.getSelectedValue().toString();
+				char[] c = str.toCharArray();
+				
+				for(i = 0; i < c.length; i++) {
+					if(c[i] == ' ') {
+						counter = i;
+						break;
+					}
+				}
+				String s = "";
+				for(i = 0; i < counter; i++) {
+					s = s + c[i];
+				}
+				System.out.print(s);
+				id = Integer.parseInt(s);
+				EquipmentController.deleteEquipment(id);
+				list_1.setListData(EquipmentController.getAllEquipment());
+				}
+			});
 	}
 }

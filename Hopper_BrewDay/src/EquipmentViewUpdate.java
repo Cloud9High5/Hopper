@@ -50,5 +50,24 @@ public class EquipmentViewUpdate extends JFrame{
 		lblNewCapcity.setBounds(136, 127, 141, 23);
 		contentPane.add(lblNewCapcity);
 		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(285, 125, 39, 31);
+		contentPane.add(textField_1);
+		
+		JLabel lblL = new JLabel("L");
+		lblL.setHorizontalAlignment(SwingConstants.CENTER);
+		lblL.setFont(new Font("Bahnschrift", Font.BOLD, 14));
+		lblL.setBounds(334, 127, 27, 23);
+		contentPane.add(lblL);
+		this.setVisible(true);
+		
+		btnFinish.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//update
+				EquipmentController.updateEquipment(new EquipmentModel(textField.getText(),Double.parseDouble(textField_1.getText())), Eid);
+				dispose();
+			}
+		});
 	}
 }

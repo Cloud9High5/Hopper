@@ -243,6 +243,17 @@ public class RecipeView extends JFrame{
 				new HomeView(hm, hc);
 				}
 			});
+		btnCheckList.addActionListener(new ActionListener() {
+			private RecipeModel rm;
+			private RecipeController rc;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new RecipeViewCreate(rm, rc);
+				}
+			});
 	}
 	
 }
