@@ -254,6 +254,29 @@ public class RecipeView extends JFrame{
 				new RecipeViewCreate(rm, rc);
 				}
 			});
+		btnCreate.addActionListener(new ActionListener() {
+			private NoteModel nm;
+			private NoteController nc;
+			private RecipeModel rm;
+			private RecipeController rc;
+
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				// Controller decides what the click means.
+				try {
+					RecipeController.insertRecipe(new RecipeModel(textName.getText(),
+							Double.parseDouble(textWater.getText()),Double.parseDouble(textMalt.getText()),
+							Double.parseDouble(textHop.getText()),Double.parseDouble(textYeast.getText()),
+							Double.parseDouble(textSugar.getText()),Double.parseDouble(textAdditive.getText())));
+					dispose();
+					new RecipeViewCreate(rm, rc);
+					new RecipeViewNote(nm, nc, null);
+			    } catch (NumberFormatException ne) {
+			    	new WarningViewBlank();
+			        ne.printStackTrace();
+			    }
+				}
+			});
 	}
 	
 }
