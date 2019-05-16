@@ -60,6 +60,8 @@ public class EquipmentViewUpdate extends JFrame{
 		lblL.setFont(new Font("Bahnschrift", Font.BOLD, 14));
 		lblL.setBounds(334, 127, 27, 23);
 		contentPane.add(lblL);
+		
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
 		btnFinish.addActionListener(new ActionListener() {
@@ -67,6 +69,7 @@ public class EquipmentViewUpdate extends JFrame{
 				//update
 				EquipmentController.updateEquipment(new EquipmentModel(textField.getText(),Double.parseDouble(textField_1.getText())), Eid);
 				dispose();
+				new EquipmentView(m, c);
 			}
 		});
 	}

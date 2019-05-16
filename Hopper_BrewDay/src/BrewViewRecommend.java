@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
@@ -35,62 +36,41 @@ public class BrewViewRecommend extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Recommend a recipe:");
-		lblNewLabel.setFont(new Font("Bahnschrift", Font.BOLD, 26));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(47, 60, 286, 62);
-		contentPane.add(lblNewLabel);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBackground(SystemColor.info);
-		textArea.setEditable(false);
-		textArea.setBounds(343, 60, 629, 62);
-		contentPane.add(textArea);
-		
 		JLabel lblRecipesList = new JLabel("Recipes List:");
+		lblRecipesList.setForeground(Color.ORANGE);
 		lblRecipesList.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRecipesList.setFont(new Font("Bahnschrift", Font.BOLD, 17));
-		lblRecipesList.setBounds(47, 162, 120, 40);
+		lblRecipesList.setBounds(47, 46, 120, 40);
 		contentPane.add(lblRecipesList);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(47, 211, 939, 275);
+		scrollPane.setBounds(47, 96, 939, 390);
 		contentPane.add(scrollPane);
-		
-		JButton buttonBack = new JButton("Home");
-		buttonBack.setFont(new Font("Bahnschrift", Font.BOLD, 14));
-		buttonBack.setBounds(902, 559, 93, 23);
-		contentPane.add(buttonBack);
 	
 		JList list = new JList();
+		list.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		list.setModel(new AbstractListModel() {
-			
-			
-			
 			String[] values =c.getRecipeString();
-			
 			public int getSize() {
 				if(values == null) {
 					return 0;
-					
 				}
 				return values.length;
 			}
 			public Object getElementAt(int index) {
 				if(values == null) {
 					return 0;
-					
 				}
 				return values[index];
 			}
 		});
 		scrollPane.setViewportView(list);
 		
-		JButton btnNewButton1 = new JButton("Brew");
-		btnNewButton1.setFont(new Font("Bahnschrift", Font.BOLD, 15));
-		btnNewButton1.setBounds(830, 150, 130, 49);
-		contentPane.add(btnNewButton1);
+		JButton buttonBack = new JButton("Home");
+		buttonBack.setFont(new Font("Bahnschrift", Font.BOLD, 14));
+		buttonBack.setBounds(902, 559, 93, 23);
+		contentPane.add(buttonBack);
 		
 		JButton btnBrewButton = new JButton("Brew  This  One");
 		btnBrewButton.setFont(new Font("Bahnschrift", Font.BOLD, 20));

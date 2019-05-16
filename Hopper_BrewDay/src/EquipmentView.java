@@ -78,7 +78,7 @@ public class EquipmentView extends JFrame{
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		JList list_1 = new JList();
-		list_1.setFont(new Font("Bahnschrift", Font.BOLD, 12));
+		list_1.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		list_1.setModel(new AbstractListModel() {
 			String[] values = EquipmentController.getAllEquipment();
 			//String[] values = EquipmentController.getEquip();
@@ -123,7 +123,7 @@ public class EquipmentView extends JFrame{
 
 			@Override
 				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
+				dispose();
 				new EquipmentViewAdd(em, ec);
 				}
 			});
@@ -150,6 +150,7 @@ public class EquipmentView extends JFrame{
 					s = s + c[i];
 				}
 				id = Integer.parseInt(s);
+				dispose();
 				new EquipmentViewUpdate(em, ec, id);
 				}
 			});

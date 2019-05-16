@@ -120,6 +120,7 @@ public class IngredientView extends JFrame {
 				System.out.print(s);
 				id = Integer.parseInt(s);
 				NoteController.deleteNote(id);
+				dispose();
 				new IngredientViewUpdate(im, ic, id);
 				}
 			});

@@ -43,6 +43,7 @@ public class IngredientViewUpdate extends JFrame {
 		textAmount.setColumns(10);
 		textAmount.setBounds(315, 87, 84, 69);
 		contentPane.add(textAmount);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		btnNewButton.addActionListener(new ActionListener() {
 			private IngredientModel ig;
@@ -67,6 +68,7 @@ public class IngredientViewUpdate extends JFrame {
 				new IngredientController(ig);
 				IngredientController.updateIngredient(new IngredientModel(Double.parseDouble(textAmount.getText())), Sid);
 				dispose();
+				new IngredientView(ig, c);
 			}
 		});
 		

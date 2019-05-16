@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.AbstractListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,6 +34,8 @@ public class RecipeViewCreate extends JFrame {
 			
 			JButton buttonBack = new JButton("Home");
 			buttonBack.setFont(new Font("Bahnschrift", Font.BOLD, 14));
+			buttonBack.setBackground(new Color(160, 82, 45));
+			buttonBack.setForeground(new Color(255, 255, 240));
 			buttonBack.setBounds(902, 559, 93, 23);
 			contentPane.add(buttonBack);
 			
@@ -45,11 +48,15 @@ public class RecipeViewCreate extends JFrame {
 			
 			JButton btnUpdate = new JButton("Update");
 			btnUpdate.setFont(new Font("Bahnschrift", Font.BOLD, 19));
+			btnUpdate.setBackground(new Color(160, 82, 45));
+			btnUpdate.setForeground(new Color(255, 255, 240));
 			btnUpdate.setBounds(175, 435, 156, 51);
 			contentPane.add(btnUpdate);
 			
 			JButton btnDelete = new JButton("Delete");
 			btnDelete.setFont(new Font("Bahnschrift", Font.BOLD, 19));
+			btnDelete.setBackground(new Color(160, 82, 45));
+			btnDelete.setForeground(new Color(255, 255, 240));
 			btnDelete.setBounds(712, 435, 156, 51);
 			contentPane.add(btnDelete);
 			
@@ -59,7 +66,7 @@ public class RecipeViewCreate extends JFrame {
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			
 			JList list_1 = new JList(c.getAllRecipe());
-			list_1.setFont(new Font("Bahnschrift", Font.BOLD, 12));
+			list_1.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 			list_1.setModel(new AbstractListModel() {
 				String[] values = c.getAllRecipe();
 				public int getSize() {
@@ -73,15 +80,23 @@ public class RecipeViewCreate extends JFrame {
 			scrollPane.setViewportView(list_1);
 			
 			JLabel lblIngredient = new JLabel("Recipes list:");
+			lblIngredient.setForeground(Color.ORANGE);
 			lblIngredient.setBounds(104, 178, 124, 26);
 			contentPane.add(lblIngredient);
-			lblIngredient.setForeground(SystemColor.textInactiveText);
 			lblIngredient.setFont(new Font("Bahnschrift", Font.BOLD, 17));
 			
 			JButton btnAddNote = new JButton("Add Note");
 			btnAddNote.setFont(new Font("Bahnschrift", Font.BOLD, 19));
+			btnAddNote.setBackground(new Color(160, 82, 45));
+			btnAddNote.setForeground(new Color(255, 255, 240));
 			btnAddNote.setBounds(443, 435, 156, 51);
 			contentPane.add(btnAddNote);
+			
+			JLabel bgp = new JLabel("");
+			bgp.setIcon(new ImageIcon("images\\beer.jpg"));
+			bgp.setBounds(0, 0, 1042, 617);
+			contentPane.add(bgp);
+			
 			this.setLocationRelativeTo(null);
 			this.setVisible(true);
 			buttonBack.addActionListener(new ActionListener() {
@@ -120,7 +135,7 @@ public class RecipeViewCreate extends JFrame {
 					}
 					System.out.print(s);
 					id = Integer.parseInt(s);
-					new RecipeViewNote(nm, nc, id);
+					new RecipeViewMoreNote(nm, nc, id);
 					}
 				});
 			btnUpdate.addActionListener(new ActionListener() {
@@ -147,6 +162,7 @@ public class RecipeViewCreate extends JFrame {
 					}
 					System.out.print(s);
 					id = Integer.parseInt(s);
+					dispose();
 					new RecipeViewUpdate(rm, rc, id);
 					}
 				});

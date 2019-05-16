@@ -194,7 +194,7 @@ public class RecipeViewUpdate extends JFrame{
 		bgp.setIcon(new ImageIcon("images\\beer.jpg"));
 		bgp.setBounds(0, 0, 1042, 617);
 		contentPane.add(bgp);
-		//set visible
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		btnFinish.addActionListener(new ActionListener() {
 
@@ -206,6 +206,7 @@ public class RecipeViewUpdate extends JFrame{
 						Double.parseDouble(textHop.getText()),Double.parseDouble(textYeast.getText()),
 						Double.parseDouble(textSugar.getText()),Double.parseDouble(textAdditive.getText())), Rid);
 				dispose();
+				new RecipeViewCreate(m, c);
 				}
 			});
 	}

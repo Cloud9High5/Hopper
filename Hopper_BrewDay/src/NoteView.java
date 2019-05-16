@@ -51,7 +51,6 @@ public class NoteView extends JFrame {
 		JButton btnUpdate = new JButton("Update");
 		btnUpdate.setFont(new Font("Bahnschrift", Font.BOLD, 19));
 		btnUpdate.setBackground(new Color(160, 82, 45));
-		btnUpdate.setBounds(902, 559, 93, 23);
 		btnUpdate.setForeground(new Color(255, 255, 240));
 		btnUpdate.setBounds(175, 435, 156, 51);
 		contentPane.add(btnUpdate);
@@ -59,7 +58,6 @@ public class NoteView extends JFrame {
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.setFont(new Font("Bahnschrift", Font.BOLD, 19));
 		btnDelete.setBackground(new Color(160, 82, 45));
-		btnDelete.setBounds(902, 559, 93, 23);
 		btnDelete.setForeground(new Color(255, 255, 240));
 		btnDelete.setBounds(712, 435, 156, 51);
 		contentPane.add(btnDelete);
@@ -70,7 +68,7 @@ public class NoteView extends JFrame {
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		
 		JList list_1 = new JList();
-		list_1.setFont(new Font("Bahnschrift", Font.BOLD, 12));
+		list_1.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		list_1.setModel(new AbstractListModel() {
 			String[] values = NoteController.getAllNote();
 			public int getSize() {
