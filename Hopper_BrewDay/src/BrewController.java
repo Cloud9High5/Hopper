@@ -1,3 +1,7 @@
+
+
+
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -13,6 +17,7 @@ import javax.swing.Timer;
 
 public class BrewController {
 	private BrewModel b;
+	//compare equipment
 	public int compareEquipment(Double volumn) {
 		EquipmentModel em = new EquipmentModel(null,null);
 		EquipmentController ec = new EquipmentController(em);
