@@ -122,17 +122,25 @@ public class BrewView extends JFrame {
 						
 					}
 					 if(length<inputchar.length) {
-				        	new BrewInputWarning();
+				        	new BrewInputWarning(0);
 				    }else{
 				
-						bm.setBatchSize(Double.valueOf(editorPane_3.getText()));
-					
-						// Controller decides what the click means.
-						dispose();
-					
-						//m.setBatchSize(Double.valueOf(editorPane_3.getText()));
+				    	if(bc.compareEquipment(Double.valueOf(editorPane_3.getText()))==0) {
+				    		
+				    		new BrewInputWarning(1);
+				    	}else {
+				    	
+				    	
+							bm.setBatchSize(Double.valueOf(editorPane_3.getText()));
 						
-						new BrewSelectView(bm,bc);}
+							// Controller decides what the click means.
+							dispose();
+						
+							//m.setBatchSize(Double.valueOf(editorPane_3.getText()));
+							
+							new BrewSelectView(bm,bc);
+							
+							}}
 				}
 			});
 	}

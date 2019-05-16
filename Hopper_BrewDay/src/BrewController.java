@@ -13,7 +13,28 @@ import javax.swing.Timer;
 
 public class BrewController {
 	private BrewModel b;
-	
+	public int compareEquipment(Double volumn) {
+		EquipmentModel em = new EquipmentModel(null,null);
+		EquipmentController ec = new EquipmentController(em);
+		String[] equipment = ec.getAllEquipment();
+		String[] temp = new String[3];
+		Double[] q = new Double[equipment.length];
+		for(int count= 0;count<equipment.length&&equipment[count]!=null;count++) {
+			temp = equipment[count].split("\\|");
+				
+			q[count] = Double.valueOf(temp[2]);
+				//System.out.println(q[count]);
+		}
+		for(int count = 0;count<equipment.length;count++) {
+			
+			if(q[count]<volumn) {
+					
+				return 0;
+				}
+			}
+			return 1;
+			
+		}
 	public BrewController(BrewModel b) {
 		this.b = b;
 	}

@@ -15,26 +15,7 @@ public class BrewInputWarning extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BrewInputWarning frame = new BrewInputWarning();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public BrewInputWarning() {
+	public BrewInputWarning(int status) {
 		setTitle("Warning");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 557, 234);
@@ -47,7 +28,10 @@ public class BrewInputWarning extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblInvalidInput = new JLabel("Invalid Input. Please try again.");
+		JLabel lblInvalidInput =new JLabel("Invalid Input. Please try again.");
+		if(status ==1) {
+			lblInvalidInput.setText("The volume is too big.");
+		}
 		lblInvalidInput.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 27));
 		lblInvalidInput.setBounds(79, 10, 376, 81);
 		panel.add(lblInvalidInput);
