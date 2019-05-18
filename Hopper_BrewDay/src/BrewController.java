@@ -30,7 +30,7 @@ public class BrewController {
 			q[count] = Double.valueOf(temp[2]);
 				//System.out.println(q[count]);
 		}
-		for(int count = 0;count<equipment.length;count++) {
+		for(int count = 0;count<equipment.length&&equipment[count]!=null;count++) {
 			
 			if(q[count]<volumn) {
 					
