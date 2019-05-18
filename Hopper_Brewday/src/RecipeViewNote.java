@@ -72,6 +72,7 @@ public class RecipeViewNote extends JFrame{
 		textField_1.setBounds(526, 19, 196, 50);
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		btnFinish.addActionListener(new ActionListener() {
 

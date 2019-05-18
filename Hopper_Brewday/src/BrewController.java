@@ -44,42 +44,6 @@ public class BrewController {
 		this.b = b;
 	}
 	
-	/*public boolean implement(float batchSize,RecipeModel recipe) {
-		if(batchSize<0) {
-			return false;	
-		}
-		else {
-			int flag=0;
-			ResultSet getRid=MyDBUtil.Select("SELECT RecipeId FROM Recipe"+ RecipeModel.getName());
-			int Rid=getRid.getInt("RecipeID");
-			ResultSet getRi= MyDBUtil.Select("SELECT NAME, Amount from recipe "+ Rid);
-			while (getRi.next()){
-				String nameOfRi=getRi.getString("Name");
-				int amountOfRi= getRi.getInt("Amount");
-				ResultSet getAmountOfIngredient=MyDBUtil.Select("SELECT Name, Amount From ingredient "+nameOfRi);
-				int amountOfIngredient=getAmountOfIngredient.getInt("Amount");
-				if(amountOfRi>=amountOfIngredient) {
-					continue;
-				}else {
-					flag=1;
-					break;
-				}
-			}
-			if(flag==0) {
-				while(getRi.next()) {
-					String nameOfRi=getRi.getString("Name");
-					int amountOfRi=getRi.getInt("Amount");
-					ResultSet getAmountOfIngredient=MyDBUtil.Select("SELECT Name, Amount from Ingredient "+nameOfRi);
-					int amountOfIngredient=getAmountOfIngredient.getInt("Amount");
-					int result= amountOfIngredient-amountOfRi;
-					String s="Update Ingredient Set Amount= " + result+ "Where Name= " + nameOfRi;
-					MyDBUtil.update(s);
-					return true;
-				}
-			}
-			return false;
-		}
-	}*/
 	public static void setTimer(JLabel time){
 		final JLabel varTime = time;
 		Timer timeAction = new Timer(1000, new ActionListener() {

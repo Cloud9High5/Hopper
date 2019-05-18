@@ -61,7 +61,7 @@ public class BrewSelectView extends JFrame {
 		bgp.setIcon(new ImageIcon("images\\beer.jpg"));
 		bgp.setBounds(0, 0, 1042, 617);
 		contentPane.add(bgp);
-		
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		RecommandButton.addActionListener(new ActionListener() {
 

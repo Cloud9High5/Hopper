@@ -68,6 +68,7 @@ public class NoteViewUpdate extends JFrame {
 		textName.setBounds(319, 13, 175, 45);
 		contentPane.add(textName);
 		textName.setColumns(10);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
 		btnFinish.addActionListener(new ActionListener() {

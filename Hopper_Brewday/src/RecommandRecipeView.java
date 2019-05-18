@@ -242,6 +242,7 @@ public class RecommandRecipeView extends JFrame{
 		bgp.setBounds(0, 0, 1042, 617);
 		contentPane.add(bgp);
 		//set visible
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		
 		btnCheckList.addActionListener(new ActionListener() {

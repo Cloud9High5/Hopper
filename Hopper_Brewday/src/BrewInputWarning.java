@@ -40,6 +40,7 @@ public class BrewInputWarning extends JFrame {
 		btnNewButton.setFont(new Font("Bahnschrift", Font.PLAIN, 24));
 		btnNewButton.setBounds(198, 101, 139, 42);
 		panel.add(btnNewButton);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		btnNewButton.addActionListener(new ActionListener() {
 			private BrewModel bm;
