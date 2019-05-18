@@ -3,7 +3,6 @@ public class Test {
 
 	public static void main(String[] args){
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			
 			@Override
 			public void run() {
 			HomeModel m = new HomeModel();
@@ -20,6 +19,5 @@ public class Test {
 			m.getView(v1);
 			}
 			});
-	}
-	
+	}	
 }

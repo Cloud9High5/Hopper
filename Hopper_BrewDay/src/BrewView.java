@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 public class BrewView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	
 	public BrewView(BrewModel m, BrewController c) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,13 +136,15 @@ public class BrewView extends JFrame {
 						
 							// Controller decides what the click means.
 							dispose();
-						
-							//m.setBatchSize(Double.valueOf(editorPane_3.getText()));
 							
-							new BrewSelectView(bm,bc);
+							//m.setBatchSize(Double.valueOf(editorPane_3.getText()));
+							double volume = Double.parseDouble(editorPane_3.getText());
+							new BrewSelectView(bm,bc, volume);
 							
 							}}
 				}
 			});
+		
+		
 	}
 }

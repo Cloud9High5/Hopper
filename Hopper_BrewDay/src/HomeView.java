@@ -50,7 +50,7 @@ public class HomeView extends JFrame{
 		button1.setForeground(new Color(210, 180, 140));
 		button1.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		button1.setBackground(new Color(160, 82, 45));
-		button1.setBounds(174, 385, 103, 47);
+		button1.setBounds(181, 385, 103, 47);
 		contentPane.add(button1);
 		
 		JLabel time = new JLabel();
@@ -64,14 +64,14 @@ public class HomeView extends JFrame{
 		button2.setForeground(new Color(210, 180, 140));
 		button2.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		button2.setBackground(new Color(160, 82, 45));
-		button2.setBounds(314, 385, 150, 47);
+		button2.setBounds(323, 385, 156, 47);
 		contentPane.add(button2);
 		
 		JButton button4 = new JButton("Equipment");
 		button4.setForeground(new Color(210, 180, 140));
 		button4.setFont(new Font("Bahnschrift", Font.PLAIN, 20));
 		button4.setBackground(new Color(160, 82, 45));
-		button4.setBounds(496, 385, 182, 47);
+		button4.setBounds(514, 385, 156, 47);
 		contentPane.add(button4);
 		
 		JButton button5 = new JButton("Note");
@@ -81,22 +81,29 @@ public class HomeView extends JFrame{
 		button5.setBounds(706, 385, 103, 47);
 		contentPane.add(button5);
 		
+		JButton button6 = new JButton("History");
+		button6.setForeground(new Color(210, 180, 140));
+		button6.setFont(new Font("Bahnschrift", Font.PLAIN, 32));
+		button6.setBackground(new Color(160, 82, 45));
+		button6.setBounds(398, 490, 208, 59);
+		contentPane.add(button6);
+		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon("images\\beer.jpg"));
-		lblNewLabel.setBounds(0, 3, 1040, 612);
+		lblNewLabel.setBounds(1, 3, 1040, 612);
 		contentPane.add(lblNewLabel);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 		button1.addActionListener(new ActionListener() {
-		private RecipeModel rm;
-		private RecipeController rc;
-
-		@Override
-			public void actionPerformed(ActionEvent e) {
-			 // Controller decides what the click means.
-			dispose();
-			new RecipeView(rm, rc);
-			}
+			private RecipeModel rm;
+			private RecipeController rc;
+	
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new RecipeView(rm, rc);
+				}
 		});
 		button2.addActionListener(new ActionListener() {
 			private IngredientModel im;
@@ -142,6 +149,15 @@ public class HomeView extends JFrame{
 				new NoteView(nm, nc);
 				}
 			});
+		button6.addActionListener(new ActionListener() {
+	
+			@Override
+				public void actionPerformed(ActionEvent e) {
+				 // Controller decides what the click means.
+				dispose();
+				new HistoryView();
+				}
+		});
     }
 	
 }

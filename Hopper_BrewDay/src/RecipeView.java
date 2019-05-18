@@ -46,6 +46,7 @@ public class RecipeView extends JFrame{
 	private JTextField textAdditive;
 	private JTextField textSugar;
 	private JTextField textName;
+	private JTextField textField;
 	/**
 	 * Create the frame.
 	 */
@@ -136,7 +137,7 @@ public class RecipeView extends JFrame{
 		textAdditive.setBounds(669, 183, 33, 31);
 		panel.add(textAdditive);
 		
-		JLabel label = new JLabel("%");
+		JLabel label = new JLabel("kg");
 		label.setForeground(new Color(255, 255, 240));
 		label.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		label.setBounds(158, 142, 33, 21);
@@ -153,55 +154,75 @@ public class RecipeView extends JFrame{
 		textSugar.setBounds(669, 145, 33, 31);
 		panel.add(textSugar);
 		
-		JLabel label_1 = new JLabel("%");
+		JLabel label_1 = new JLabel("kg");
 		label_1.setForeground(new Color(255, 255, 240));
 		label_1.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_1.setBounds(156, 183, 33, 21);
+		label_1.setBounds(156, 183, 33, 26);
 		panel.add(label_1);
 		
-		JLabel label_2 = new JLabel("%");
-		label_2.setForeground(new Color(255, 255, 240));
-		label_2.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_2.setBounds(430, 148, 33, 21);
-		panel.add(label_2);
+		JLabel lblKg = new JLabel("kg");
+		lblKg.setForeground(new Color(255, 255, 240));
+		lblKg.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+		lblKg.setBounds(430, 148, 33, 21);
+		panel.add(lblKg);
 		
-		JLabel label_3 = new JLabel("%");
-		label_3.setForeground(new Color(255, 255, 240));
-		label_3.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_3.setBounds(430, 189, 33, 21);
-		panel.add(label_3);
+		JLabel lblKg_1 = new JLabel("kg");
+		lblKg_1.setForeground(new Color(255, 255, 240));
+		lblKg_1.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+		lblKg_1.setBounds(430, 189, 33, 21);
+		panel.add(lblKg_1);
 		
-		JLabel label_4 = new JLabel("%");
-		label_4.setForeground(new Color(255, 255, 240));
-		label_4.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_4.setBounds(712, 155, 33, 21);
-		panel.add(label_4);
+		JLabel lblKg_2 = new JLabel("kg");
+		lblKg_2.setForeground(new Color(255, 255, 240));
+		lblKg_2.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+		lblKg_2.setBounds(712, 152, 33, 21);
+		panel.add(lblKg_2);
 		
-		JLabel label_5 = new JLabel("%");
-		label_5.setForeground(new Color(255, 255, 240));
-		label_5.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_5.setBounds(712, 188, 33, 21);
-		panel.add(label_5);
+		JLabel lblKg_3 = new JLabel("kg");
+		lblKg_3.setForeground(new Color(255, 255, 240));
+		lblKg_3.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+		lblKg_3.setBounds(712, 188, 33, 21);
+		panel.add(lblKg_3);
 		
 		JLabel lblRecipeName = new JLabel("Recipe name:");
 		lblRecipeName.setForeground(new Color(255, 255, 240));
 		lblRecipeName.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRecipeName.setFont(new Font("Bahnschrift", Font.BOLD, 23));
-		lblRecipeName.setBounds(258, 20, 153, 50);
+		lblRecipeName.setBounds(72, 20, 153, 50);
 		panel.add(lblRecipeName);
 		
 		textName = new JTextField();
 		textName.setFont(new Font("Bahnschrift", Font.BOLD, 24));
 		textName.setColumns(10);
-		textName.setBounds(421, 20, 164, 50);
+		textName.setBounds(235, 20, 164, 50);
 		panel.add(textName);
 		
-		JLabel lblAmountsMustEqual = new JLabel("Amounts must equal to 100%");
-		lblAmountsMustEqual.setForeground(new Color(255, 255, 240));
+		JLabel lblAmountsMustEqual = new JLabel("Each percentage should be greater than or equal to 0");
+		lblAmountsMustEqual.setForeground(Color.ORANGE);
 		lblAmountsMustEqual.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAmountsMustEqual.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		lblAmountsMustEqual.setBounds(274, 295, 323, 21);
+		lblAmountsMustEqual.setBounds(48, 276, 775, 49);
 		panel.add(lblAmountsMustEqual);
+		
+		JLabel lblSampleVolume = new JLabel("Sample volume:");
+		lblSampleVolume.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSampleVolume.setForeground(new Color(255, 255, 240));
+		lblSampleVolume.setFont(new Font("Bahnschrift", Font.BOLD, 23));
+		lblSampleVolume.setBounds(430, 20, 199, 50);
+		panel.add(lblSampleVolume);
+		
+		textField = new JTextField();
+		textField.setFont(new Font("Bahnschrift", Font.BOLD, 24));
+		textField.setColumns(10);
+		textField.setBounds(626, 20, 63, 50);
+		panel.add(textField);
+		
+		JLabel lblL = new JLabel("L");
+		lblL.setHorizontalAlignment(SwingConstants.CENTER);
+		lblL.setForeground(new Color(255, 255, 240));
+		lblL.setFont(new Font("Bahnschrift", Font.BOLD, 23));
+		lblL.setBounds(699, 20, 50, 50);
+		panel.add(lblL);
 		
 		JButton btnCreate = new JButton("Create");
 		btnCreate.setFont(new Font("Bahnschrift", Font.BOLD, 19));
@@ -261,22 +282,33 @@ public class RecipeView extends JFrame{
 			private RecipeController rc;
 
 			@Override
-				public void actionPerformed(ActionEvent e) {
-				// Controller decides what the click means.
-				try {
-					RecipeController.insertRecipe(new RecipeModel(textName.getText(),
-							Double.parseDouble(textWater.getText()),Double.parseDouble(textMalt.getText()),
-							Double.parseDouble(textHop.getText()),Double.parseDouble(textYeast.getText()),
-							Double.parseDouble(textSugar.getText()),Double.parseDouble(textAdditive.getText())));
-					dispose();
-					new RecipeViewCreate(rm, rc);
-					new RecipeViewNote(nm, nc, null);
-			    } catch (NumberFormatException ne) {
-			    	new WarningViewBlank();
-			        ne.printStackTrace();
-			    }
-				}
-			});
+			public void actionPerformed(ActionEvent e) {
+			// Controller decides what the click means.
+					try {
+						boolean a0, a1, a2, a3, a4, a5, a6;
+						a0 = textWater.getText().matches("^\\d+(\\.\\d+)?$");
+						a1 = textMalt.getText().matches("^\\d+(\\.\\d+)?$");
+						a2 = textHop.getText().matches("^\\d+(\\.\\d+)?$");
+						a3 = textYeast.getText().matches("^\\d+(\\.\\d+)?$");
+						a4 = textSugar.getText().matches("^\\d+(\\.\\d+)?$");
+						a5 = textAdditive.getText().matches("^\\d+(\\.\\d+)?$");
+						a6 = textField.getText().matches("^\\d+(\\.\\d+)?$");
+						if(!(a0 && a1 && a2 && a3 && a4 && a5)) {
+							new WarningViewNumber();
+						}else{
+							RecipeController.insertRecipe(new RecipeModel(textName.getText(),
+									Double.parseDouble(textWater.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textMalt.getText())/Double.parseDouble(textField.getText()),
+									Double.parseDouble(textHop.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textYeast.getText())/Double.parseDouble(textField.getText()),
+									Double.parseDouble(textSugar.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textAdditive.getText())/Double.parseDouble(textField.getText())));
+							dispose();
+							new RecipeViewCreate(rm, rc);
+							new RecipeViewNote(nm, nc, null);
+						}
+				    } catch (NumberFormatException ne) {
+				    	new WarningViewBlank();
+				    }
+			}
+		});
 	}
 	
 }

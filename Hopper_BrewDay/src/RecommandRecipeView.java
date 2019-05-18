@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -48,8 +50,10 @@ public class RecommandRecipeView extends JFrame{
 	 * Create the frame.
 	 */
 	DefaultListModel<String> listmodel = new DefaultListModel<String>() ;
+	long timemillis = System.currentTimeMillis();
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
-	public RecommandRecipeView(BrewModel m, BrewController c) {
+	public RecommandRecipeView(BrewModel m, BrewController c, double volume) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Recipe");
@@ -71,13 +75,6 @@ public class RecommandRecipeView extends JFrame{
 		panel.setBounds(82, 150, 872, 354);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
-		JButton buttonBack = new JButton("Home");
-		buttonBack.setFont(new Font("Bahnschrift", Font.BOLD, 14));
-		buttonBack.setBackground(new Color(160, 82, 45));
-		buttonBack.setBounds(902, 559, 93, 23);
-		buttonBack.setForeground(new Color(255, 255, 240));
-		contentPane.add(buttonBack);
 			
 		JLabel lblMalts = new JLabel("Malts");
 		lblMalts.setForeground(new Color(255, 255, 240));
@@ -226,11 +223,11 @@ public class RecommandRecipeView extends JFrame{
 		btnCreate.setBackground(new Color(160, 82, 45));
 		contentPane.add(btnCreate);*/
 		
-		JButton btnCheckList = new JButton("Check List");
+		JButton btnCheckList = new JButton("Save");
 		btnCheckList.setForeground(new Color(255, 255, 240));
-		btnCheckList.setFont(new Font("Bahnschrift", Font.BOLD, 19));
+		btnCheckList.setFont(new Font("Bahnschrift", Font.BOLD, 29));
 		btnCheckList.setBackground(new Color(160, 82, 45));
-		btnCheckList.setBounds(813, 510, 141, 30);
+		btnCheckList.setBounds(435, 520, 171, 68);
 		contentPane.add(btnCheckList);
 		
 		JLabel time = new JLabel();
@@ -247,30 +244,21 @@ public class RecommandRecipeView extends JFrame{
 		//set visible
 		this.setVisible(true);
 		
-		buttonBack.addActionListener(new ActionListener() {
+		btnCheckList.addActionListener(new ActionListener() {
 			private HomeModel hm;
 			private HomeController hc;
 
 			@Override
 				public void actionPerformed(ActionEvent e) {
 				 // Controller decides what the click means.
+				BrewController.insertHistory(new HistoryModel(new Timestamp(timemillis), volume, recipe.getWaterQuantity(), recipe.getMaltQuantity(), recipe.getHopQuantity(), recipe.getYeastQuantity(), recipe.getSugarQuantity(), recipe.getAdditiveQuantity()));
 				dispose();
 				new HomeView(hm, hc);
 				}
 			});
-		btnCheckList.addActionListener(new ActionListener() {
-			private RecipeModel rm;
-			private RecipeController rc;
-
-			@Override
-				public void actionPerformed(ActionEvent e) {
-				 // Controller decides what the click means.
-				dispose();
-				new RecipeViewCreate(rm, rc);
-				}
-			});
 		
 	}
+
 	
 }
 

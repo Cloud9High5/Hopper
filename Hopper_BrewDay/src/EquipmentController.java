@@ -67,11 +67,9 @@ public class EquipmentController {
 	        while (rs.next()) {
 	        	String res = "";
         	    for (i = 1; i <= col; i++) {
-        	    	System.out.print(rs.getString(i) + " | ");
         	    	res += rs.getString(i) + " | ";
 	             }
         	    line[j++] = res;
-        	    System.out.println();
 	        }
 	    } catch (SQLException e) {
 	        e.printStackTrace();

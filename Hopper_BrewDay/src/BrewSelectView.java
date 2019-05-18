@@ -23,7 +23,7 @@ public class BrewSelectView extends JFrame {
 	private JPanel contentPane;
 
 
-	public BrewSelectView(BrewModel m, BrewController c) {
+	public BrewSelectView(BrewModel m, BrewController c, Double volume) {
 		setTitle("Brew Selection");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1048, 646);
@@ -64,6 +64,7 @@ public class BrewSelectView extends JFrame {
 		
 		this.setVisible(true);
 		RecommandButton.addActionListener(new ActionListener() {
+
 			//private BrewModel bm;
 			
 
@@ -87,7 +88,7 @@ public class BrewSelectView extends JFrame {
 				//System.out.println(m.getBatchSize());
 				
 				dispose();
-				new BrewViewRecommend(m, c);
+				new BrewViewRecommend(m, c, volume);
 			}
 		
 		});

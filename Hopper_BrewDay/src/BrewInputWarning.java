@@ -32,12 +32,12 @@ public class BrewInputWarning extends JFrame {
 		if(status ==1) {
 			lblInvalidInput.setText("The volume is too big.");
 		}
-		lblInvalidInput.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 27));
+		lblInvalidInput.setFont(new Font("Bahnschrift", Font.PLAIN, 27));
 		lblInvalidInput.setBounds(79, 10, 376, 81);
 		panel.add(lblInvalidInput);
 		
 		JButton btnNewButton = new JButton("OK");
-		btnNewButton.setFont(new Font("ËÎÌו", Font.PLAIN, 24));
+		btnNewButton.setFont(new Font("Bahnschrift", Font.PLAIN, 24));
 		btnNewButton.setBounds(198, 101, 139, 42);
 		panel.add(btnNewButton);
 		this.setVisible(true);
@@ -49,7 +49,7 @@ public class BrewInputWarning extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 				 // Controller decides what the click means.
 				dispose();
-				new BrewView(bm, bc);
+				
 				}
 			});
 		

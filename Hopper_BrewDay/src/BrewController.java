@@ -1,22 +1,20 @@
-
-
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
 public class BrewController {
 	private BrewModel b;
+    static long timemillis = System.currentTimeMillis();
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	//compare equipment
 	public int compareEquipment(Double volumn) {
 		EquipmentModel em = new EquipmentModel(null,null);
@@ -24,20 +22,22 @@ public class BrewController {
 		String[] equipment = ec.getAllEquipment();
 		String[] temp = new String[3];
 		Double[] q = new Double[equipment.length];
+	
 		for(int count= 0;count<equipment.length&&equipment[count]!=null;count++) {
 			temp = equipment[count].split("\\|");
 				
 			q[count] = Double.valueOf(temp[2]);
 				//System.out.println(q[count]);
 		}
-		for(int count = 0;count<equipment.length;count++) {
+		for(int count = 0;count<equipment.length&&equipment[count]!=null;count++) {
 			
-			if(q[count]<volumn) {
+			if(q[count]>=volumn) {
 					
-				return 0;
+				return 1;
 				}
-			}
-			return 1;
+			
+		}
+			return 0;
 			
 		}
 	public BrewController(BrewModel b) {
@@ -130,6 +130,54 @@ public class BrewController {
 		return check;
 	}
 	
+	
+	public static int insertHistory(HistoryModel history) {
+	    Connection conn = MyDBUtil.getConn();
+	    int i = 0;
+	    String sql = "insert into history (Date,Volume,WaterQuantity,MaltQuantity,HopQuantity,YeastQuantity,SugarQuantity,AdditiveQuantity) values(?,?,?,?,?,?,?,?)";
+	    PreparedStatement pstmt;
+	    try {
+	    	pstmt = (PreparedStatement) conn.prepareStatement(sql);
+	    	pstmt.setTimestamp(1, new Timestamp(timemillis));
+	    	pstmt.setDouble(2, history.getVolume());
+	        pstmt.setDouble(3, history.getWaterQuantity());
+	        pstmt.setDouble(4, history.getMaltQuantity());
+	        pstmt.setDouble(5, history.getHopQuantity());
+	        pstmt.setDouble(6, history.getYeastQuantity());
+	        pstmt.setDouble(7, history.getSugarQuantity());
+	        pstmt.setDouble(8, history.getAdditiveQuantity());
+	        i = pstmt.executeUpdate();
+	        pstmt.close();
+	        conn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return i;
+	}
+	
+	public static String[] getAllHistory() {
+	    Connection conn = MyDBUtil.getConn();
+	    String sql = "select * from history";
+	    String[] line = new String[100];
+	    int i = 1;
+	    PreparedStatement pstmt;
+	    try {
+	        pstmt = (PreparedStatement)conn.prepareStatement(sql);
+	        ResultSet rs = pstmt.executeQuery();
+	        int col = rs.getMetaData().getColumnCount();
+	        int j = 0;
+	        while (rs.next()) {
+	        	String res = "";
+        	    for (i = 1; i <= col; i++) {
+        	    	res += rs.getString(i) + " | ";
+	             }
+        	    line[j++] = res;
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return line;
+	}
 
 	public static ArrayList<RecipeModel> getRecipe() {//get all recipe that store in database
 		ArrayList<RecipeModel> recipe = new ArrayList<RecipeModel>();
@@ -208,12 +256,12 @@ public class BrewController {
 		
 		Double batchsize=b.getBatchSize();
 		//batchsize is zero
-		NeedAmount[0] = batchsize*recipe.getWaterQuantity()/100.0;
-		NeedAmount[1] = batchsize*recipe.getMaltQuantity()/100.0;
-		NeedAmount[2] = batchsize*recipe.getHopQuantity()/100.0;
-		NeedAmount[3] = batchsize*recipe.getYeastQuantity()/100.0;
-		NeedAmount[4] = batchsize*recipe.getSugarQuantity()/100.0;
-		NeedAmount[5] = batchsize*recipe.getAdditiveQuantity()/100.0;
+		NeedAmount[0] = batchsize*recipe.getWaterQuantity();
+		NeedAmount[1] = batchsize*recipe.getMaltQuantity();
+		NeedAmount[2] = batchsize*recipe.getHopQuantity();
+		NeedAmount[3] = batchsize*recipe.getYeastQuantity();
+		NeedAmount[4] = batchsize*recipe.getSugarQuantity();
+		NeedAmount[5] = batchsize*recipe.getAdditiveQuantity();
 		//for(int count = 0;count<NeedAmount.length;count++) {
 			//System.out.println(NeedAmount[count]);
 		//}
@@ -224,12 +272,12 @@ public class BrewController {
 	public Double[] sub(RecipeModel recipe) {//subtract the recipe amount from storage amount
 		Double batchsize = this.b.getBatchSize();
 		Double[] amount= BrewController.getIngredientAmount() ;
-		amount[0] = amount[0] -recipe.getWaterQuantity()*batchsize/100.0;
-		amount[1] = amount[1] -recipe.getMaltQuantity()*batchsize/100.0;
-		amount[2] = amount[2] -recipe.getHopQuantity()*batchsize/100.0;
-		amount[3] = amount[3] -recipe.getYeastQuantity()*batchsize/100.0;
-		amount[4] = amount[4] -recipe.getSugarQuantity()*batchsize/100.0;
-		amount[5] = amount[5] -recipe.getAdditiveQuantity()*batchsize/100.0;
+		amount[0] = amount[0] -recipe.getWaterQuantity()*batchsize;
+		amount[1] = amount[1] -recipe.getMaltQuantity()*batchsize;
+		amount[2] = amount[2] -recipe.getHopQuantity()*batchsize;
+		amount[3] = amount[3] -recipe.getYeastQuantity()*batchsize;
+		amount[4] = amount[4] -recipe.getSugarQuantity()*batchsize;
+		amount[5] = amount[5] -recipe.getAdditiveQuantity()*batchsize;
 		
 		return amount;
 	}
@@ -346,12 +394,12 @@ public class BrewController {
 		
 	
 		for(int i=0;i<recipe.size();i++) {//get recipe percentage
-			RecipeAmount[i][0] = recipe.get(i).getWaterQuantity()/100.0*batchsize;
-			RecipeAmount[i][1] = recipe.get(i).getMaltQuantity()/100.0*batchsize;
-			RecipeAmount[i][2] = recipe.get(i).getHopQuantity()/100.0*batchsize;
-			RecipeAmount[i][3] = recipe.get(i).getYeastQuantity()/100.0*batchsize;
-			RecipeAmount[i][4] = recipe.get(i).getSugarQuantity()/100.0*batchsize;
-			RecipeAmount[i][5] = recipe.get(i).getAdditiveQuantity()/100.0*batchsize;
+			RecipeAmount[i][0] = recipe.get(i).getWaterQuantity()*batchsize;
+			RecipeAmount[i][1] = recipe.get(i).getMaltQuantity()*batchsize;
+			RecipeAmount[i][2] = recipe.get(i).getHopQuantity()*batchsize;
+			RecipeAmount[i][3] = recipe.get(i).getYeastQuantity()*batchsize;
+			RecipeAmount[i][4] = recipe.get(i).getSugarQuantity()*batchsize;
+			RecipeAmount[i][5] = recipe.get(i).getAdditiveQuantity()*batchsize;
 			//System.out.println(RecipeAmount[i][0] +","+RecipeAmount[i][1] +","+RecipeAmount[i][2] +",");
 		}
 		
@@ -383,12 +431,12 @@ public class BrewController {
 		int[] MissingRecipe = new int[recipe.size()];
 
 		for(int i=0;i<recipe.size();i++) {
-			RecipeAmount[i][0] = recipe.get(i).getWaterQuantity()/100*batchsize;
-			RecipeAmount[i][1] = recipe.get(i).getMaltQuantity()/100*batchsize;
-			RecipeAmount[i][2] = recipe.get(i).getHopQuantity()/100*batchsize;
-			RecipeAmount[i][3] = recipe.get(i).getYeastQuantity()/100*batchsize;
-			RecipeAmount[i][4] = recipe.get(i).getSugarQuantity()/100*batchsize;
-			RecipeAmount[i][5] = recipe.get(i).getAdditiveQuantity()/100*batchsize;
+			RecipeAmount[i][0] = recipe.get(i).getWaterQuantity()*batchsize;
+			RecipeAmount[i][1] = recipe.get(i).getMaltQuantity()*batchsize;
+			RecipeAmount[i][2] = recipe.get(i).getHopQuantity()*batchsize;
+			RecipeAmount[i][3] = recipe.get(i).getYeastQuantity()*batchsize;
+			RecipeAmount[i][4] = recipe.get(i).getSugarQuantity()*batchsize;
+			RecipeAmount[i][5] = recipe.get(i).getAdditiveQuantity()*batchsize;
 			
 		}
 		

@@ -26,7 +26,7 @@ public class BrewViewRecommend extends JFrame {
 	private static final long serialVersionUID = 1L;
 
 
-	public BrewViewRecommend(BrewModel m,BrewController c) {
+	public BrewViewRecommend(BrewModel m,BrewController c, double volume) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1048, 646);
@@ -93,6 +93,8 @@ public class BrewViewRecommend extends JFrame {
 		btnBrewButton.addActionListener(new ActionListener() {
 			
 			
+			private double v;
+
 			@Override
 				public void actionPerformed(ActionEvent e) {
 				 // Controller decides what the click means.
@@ -100,7 +102,7 @@ public class BrewViewRecommend extends JFrame {
 					m.setRecipe(recommandrecipe);
 					BrewController.updateAmount(c.sub(recommandrecipe));
 					dispose();
-					new RecommandRecipeView(m,c);
+					new RecommandRecipeView(m, c, volume);
 				}
 			});
 		

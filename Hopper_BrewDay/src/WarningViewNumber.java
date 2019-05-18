@@ -7,9 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class WarningViewBlank extends JFrame {
+public class WarningViewNumber extends JFrame {
 
 	/**
 	 * 
@@ -17,10 +18,10 @@ public class WarningViewBlank extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
-	public WarningViewBlank() {
+	public WarningViewNumber() {
 		setTitle("Warning");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 500, 259);
+		setBounds(100, 100, 592, 259);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -28,16 +29,18 @@ public class WarningViewBlank extends JFrame {
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("images\\warning.png"));
-		label.setBounds(42, 69, 85, 63);
+		label.setBounds(40, 71, 85, 63);
 		contentPane.add(label);
 		
-		JLabel lblNewLabel = new JLabel("Please fill all the blank with numbers!");
+		JLabel lblNewLabel = new JLabel("Please input non-negative decimal or integer!");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setVerticalAlignment(SwingConstants.TOP);
 		lblNewLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 19));
-		lblNewLabel.setBounds(139, 69, 332, 63);
+		lblNewLabel.setBounds(135, 71, 415, 88);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnClose = new JButton("Close");
-		btnClose.setBounds(199, 169, 93, 23);
+		btnClose.setBounds(245, 169, 93, 23);
 		contentPane.add(btnClose);
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);
