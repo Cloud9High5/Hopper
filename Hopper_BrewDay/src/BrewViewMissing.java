@@ -34,27 +34,16 @@ public class BrewViewMissing extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel(" Recipe With Missing Ingredient:");
-		lblNewLabel.setFont(new Font("Bahnschrift", Font.BOLD, 18));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(47, 60, 286, 62);
-		contentPane.add(lblNewLabel);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBackground(SystemColor.info);
-		textArea.setEditable(false);
-		textArea.setBounds(343, 60, 629, 62);
-		contentPane.add(textArea);
 		
 		JLabel lblRecipesList = new JLabel("Recipes List:");
 		lblRecipesList.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRecipesList.setFont(new Font("Bahnschrift", Font.BOLD, 17));
-		lblRecipesList.setBounds(47, 162, 120, 40);
+		lblRecipesList.setBounds(47, 46, 120, 40);
 		contentPane.add(lblRecipesList);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(47, 211, 939, 275);
+		scrollPane.setBounds(47, 96, 939, 390);
 		contentPane.add(scrollPane);
 		
 		JButton buttonBack = new JButton("Home");
