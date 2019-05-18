@@ -38,13 +38,13 @@ public class BrewController {
 		}
 		for(int count = 0;count<numofequip;count++) {
 			
-			if(q[count]<volumn) {
+			if(q[count]>volumn) {
 					
-				numofequip--;
+				return 1;
 				}
-			return 1;
+			
 		}
-			return numofequip;
+			return 0;
 			
 		}
 	public BrewController(BrewModel b) {
