@@ -49,7 +49,7 @@ public class BrewInputWarning extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 				 // Controller decides what the click means.
 				dispose();
-				new BrewView(bm, bc);
+				
 				}
 			});
 		
