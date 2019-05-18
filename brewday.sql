@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2019-05-08 17:54:43
+-- 生成日期： 2019-05-18 10:23:46
 -- 服务器版本： 10.1.38-MariaDB
 -- PHP 版本： 7.1.28
 
@@ -39,9 +39,11 @@ CREATE TABLE `equipment` (
 --
 
 INSERT INTO `equipment` (`Eid`, `Name`, `Capacity`) VALUES
-(4, 'eq2', 12),
-(5, 'aa', 12),
-(7, 'sb', 222);
+(13, 'ee', 12),
+(14, '2', 12.3),
+(15, 'ew', 44.1),
+(16, 'e', 1),
+(17, 'weew', 100);
 
 -- --------------------------------------------------------
 
@@ -62,11 +64,16 @@ CREATE TABLE `note` (
 --
 
 INSERT INTO `note` (`Nid`, `Name`, `Content`, `Date`, `Rid`) VALUES
-(3, 'note2', 'nolan is sb', '2019-05-08 09:57:56', 3),
-(4, 'xxx', 'note for 3', '2019-05-08 17:07:42', 3),
-(6, 'qweq', 'note for 4', '2019-05-08 17:07:42', 4),
-(7, 'ass22', 'qqqqqqqqqqqqqqqqqqqqqqqq', '2019-05-08 22:45:26', 23),
-(8, 'ass23', '    1231213', '2019-05-08 22:46:49', 23);
+(3, 'dsf', '2342rtf34f345gy4456yh', '2019-05-16 21:22:05', 3),
+(15, '3bangz', 'asdasdasdasdasdasdadaasdas', '2019-05-16 21:34:27', 3),
+(16, 'sad', '12313', '2019-05-18 11:48:23', 30),
+(17, '', '', '2019-05-18 11:52:34', 31),
+(18, '', '', '2019-05-18 12:02:18', 33),
+(19, 'dsf', 'sdeggverve', '2019-05-18 15:16:30', 36),
+(20, 'qwe', 'qwe', '2019-05-18 16:03:24', 39),
+(21, '12', 'qwe', '2019-05-18 16:05:20', 40),
+(22, 'hjk', 'hjk', '2019-05-18 16:14:21', 41),
+(23, 'werw', 'werwerwe', '2019-05-18 16:22:41', 43);
 
 -- --------------------------------------------------------
 
@@ -77,12 +84,12 @@ INSERT INTO `note` (`Nid`, `Name`, `Content`, `Date`, `Rid`) VALUES
 CREATE TABLE `recipe` (
   `Rid` int(11) NOT NULL,
   `Name` varchar(100) DEFAULT NULL,
-  `WaterQuantity` int(2) NOT NULL,
-  `MaltQuantity` int(2) DEFAULT NULL,
-  `HopQuantity` int(2) NOT NULL,
-  `YeastQuantity` int(2) NOT NULL,
-  `SugarQuantity` int(2) NOT NULL,
-  `AdditiveQuantity` int(2) NOT NULL
+  `WaterQuantity` double(16,4) NOT NULL,
+  `MaltQuantity` double(16,4) DEFAULT NULL,
+  `HopQuantity` double(16,4) NOT NULL,
+  `YeastQuantity` double(16,4) NOT NULL,
+  `SugarQuantity` double(16,4) NOT NULL,
+  `AdditiveQuantity` double(16,4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -90,9 +97,9 @@ CREATE TABLE `recipe` (
 --
 
 INSERT INTO `recipe` (`Rid`, `Name`, `WaterQuantity`, `MaltQuantity`, `HopQuantity`, `YeastQuantity`, `SugarQuantity`, `AdditiveQuantity`) VALUES
-(3, 'qw', 1, 1, 1, 1, 1, 1),
+(3, 'dsf', 2, 2, 2, 2, 1, 23),
 (4, 'xxx', 1, 1, 1, 1, 1, 1),
-(7, 'er', 12, 12, 3, 211, 12, 12),
+(7, 'asd', 12, 12, 12, 23, 12, 23),
 (8, 're', 1, 1, 3, 2, 12, 1),
 (9, 're', 1, 1, 23, 12, 12, 1),
 (10, 'ewr', 12, 12, 2, 12, 23, 12),
@@ -108,7 +115,27 @@ INSERT INTO `recipe` (`Rid`, `Name`, `WaterQuantity`, `MaltQuantity`, `HopQuanti
 (20, 'recipesb', 1, 1, 1, 1, 1, 1),
 (21, 'ass', 1, 1, 1, 11, 1, 1),
 (22, 'ass', 1, 1, 1, 1, 1, 1),
-(23, 'ass', 1, 1, 2, 1, 1, 1);
+(23, 'ass', 1, 1, 2, 1, 1, 1),
+(24, 'cc', 2, 2, 2, 2, 2, 2),
+(25, 'q', 1, 1, 1, 1, 1, 1),
+(26, '12', 12, 12, 1, 1, 1, 1),
+(27, 'qw', 1, 1, 2, 2, 2, 2),
+(28, 'xxxx', 1, 1, 1, 11, 1, 1),
+(29, 'as', 1, 1, -2, 1, 1, 1),
+(30, 'sa', 1, 1, 1, 1, 1, 1),
+(31, 'sa', -1, -1, -1, -1, -1, -1),
+(32, 'sa', 1, 1, 1, 1, 11, 1),
+(33, 'as', 1, 1, 1, 1, 1, -1),
+(34, 'as', 1, 1, 1, 11, 1, -1),
+(35, 'as', 1, 1, 1, 1, 1, -1),
+(36, 'as', 1, 1, 1, 1, 1, 1),
+(37, 'as', 1, 1, 1, 1, 1, -1),
+(38, 'as', 1, 1, 1, 11, 1, -12),
+(39, 'qwe', 0, 0, 0, 0, 0, 0),
+(40, 'qweqwe', 0, 0, 0, 0, 0, 0),
+(41, 'qwe', 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333),
+(42, 'ada', 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, -0.08333333333333333),
+(43, 'ada', 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333);
 
 -- --------------------------------------------------------
 
@@ -119,7 +146,7 @@ INSERT INTO `recipe` (`Rid`, `Name`, `WaterQuantity`, `MaltQuantity`, `HopQuanti
 CREATE TABLE `storageingredient` (
   `Sid` int(11) NOT NULL,
   `Name` varchar(100) DEFAULT NULL,
-  `Amount` double NOT NULL,
+  `Amount` double(16,4) NOT NULL,
   `Unit` varchar(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -128,16 +155,25 @@ CREATE TABLE `storageingredient` (
 --
 
 INSERT INTO `storageingredient` (`Sid`, `Name`, `Amount`, `Unit`) VALUES
-(1, 'Water', 13, 'Kg'),
-(2, 'Malts', 10, 'Kg'),
-(3, 'Hops', 10, 'Kg'),
-(4, 'Yeasts', 10, 'Kg'),
-(5, 'Sugars', 10, 'Kg'),
-(6, 'Additives', 10, 'Kg');
+(1, 'Water', 16.6600, 'Kg'),
+(2, 'Malts', 3.9800, 'Kg'),
+(3, 'Hops', 6.3100, 'Kg'),
+(4, 'Yeasts', 4.3700, 'Kg'),
+(5, 'Sugars', 1.1200, 'Kg'),
+(6, 'Additives', 3.9800, 'Kg');
 
---
--- 转储表的索引
---
+
+CREATE TABLE `history` (
+  `Hid` int(11) NOT NULL,
+  `Date` datetime NOT NULL,
+  `Volume` double(16,4) NOT NULL,
+  `WaterQuantity` double(16,4) NOT NULL,
+  `MaltQuantity` double(16,4) DEFAULT NULL,
+  `HopQuantity` double(16,4) NOT NULL,
+  `YeastQuantity` double(16,4) NOT NULL,
+  `SugarQuantity` double(16,4) NOT NULL,
+  `AdditiveQuantity` double(16,4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- 表的索引 `equipment`
@@ -157,6 +193,9 @@ ALTER TABLE `note`
 ALTER TABLE `recipe`
   ADD PRIMARY KEY (`Rid`);
 
+
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`Hid`);
 --
 -- 在导出的表使用AUTO_INCREMENT
 --
@@ -165,19 +204,19 @@ ALTER TABLE `recipe`
 -- 使用表AUTO_INCREMENT `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `Eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `Eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- 使用表AUTO_INCREMENT `note`
 --
 ALTER TABLE `note`
-  MODIFY `Nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `Nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- 使用表AUTO_INCREMENT `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `Rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `Rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
