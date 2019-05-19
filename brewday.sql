@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1
--- 生成日期： 2019-05-18 10:23:46
+-- 生成日期： 2019-05-19 11:26:02
 -- 服务器版本： 10.1.38-MariaDB
 -- PHP 版本： 7.1.28
 
@@ -39,11 +39,29 @@ CREATE TABLE `equipment` (
 --
 
 INSERT INTO `equipment` (`Eid`, `Name`, `Capacity`) VALUES
-(13, 'ee', 12),
-(14, '2', 12.3),
-(15, 'ew', 44.1),
-(16, 'e', 1),
-(17, 'weew', 100);
+(1, 'Eq1', 10),
+(2, 'Eq2', 5),
+(3, 'Eq', 100),
+(4, 'Eq4', 50),
+(5, 'Eq5', 200);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `history`
+--
+
+CREATE TABLE `history` (
+  `Hid` int(11) NOT NULL,
+  `Date` datetime NOT NULL,
+  `Volume` double(16,4) NOT NULL,
+  `WaterQuantity` double(16,4) NOT NULL,
+  `MaltQuantity` double(16,4) DEFAULT NULL,
+  `HopQuantity` double(16,4) NOT NULL,
+  `YeastQuantity` double(16,4) NOT NULL,
+  `SugarQuantity` double(16,4) NOT NULL,
+  `AdditiveQuantity` double(16,4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -58,22 +76,6 @@ CREATE TABLE `note` (
   `Date` datetime NOT NULL,
   `Rid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- 转存表中的数据 `note`
---
-
-INSERT INTO `note` (`Nid`, `Name`, `Content`, `Date`, `Rid`) VALUES
-(3, 'dsf', '2342rtf34f345gy4456yh', '2019-05-16 21:22:05', 3),
-(15, '3bangz', 'asdasdasdasdasdasdadaasdas', '2019-05-16 21:34:27', 3),
-(16, 'sad', '12313', '2019-05-18 11:48:23', 30),
-(17, '', '', '2019-05-18 11:52:34', 31),
-(18, '', '', '2019-05-18 12:02:18', 33),
-(19, 'dsf', 'sdeggverve', '2019-05-18 15:16:30', 36),
-(20, 'qwe', 'qwe', '2019-05-18 16:03:24', 39),
-(21, '12', 'qwe', '2019-05-18 16:05:20', 40),
-(22, 'hjk', 'hjk', '2019-05-18 16:14:21', 41),
-(23, 'werw', 'werwerwe', '2019-05-18 16:22:41', 43);
 
 -- --------------------------------------------------------
 
@@ -97,45 +99,14 @@ CREATE TABLE `recipe` (
 --
 
 INSERT INTO `recipe` (`Rid`, `Name`, `WaterQuantity`, `MaltQuantity`, `HopQuantity`, `YeastQuantity`, `SugarQuantity`, `AdditiveQuantity`) VALUES
-(3, 'dsf', 2, 2, 2, 2, 1, 23),
-(4, 'xxx', 1, 1, 1, 1, 1, 1),
-(7, 'asd', 12, 12, 12, 23, 12, 23),
-(8, 're', 1, 1, 3, 2, 12, 1),
-(9, 're', 1, 1, 23, 12, 12, 1),
-(10, 'ewr', 12, 12, 2, 12, 23, 12),
-(11, 'asd', 12, 12, 34, 4, 56, 12),
-(12, 'as', 12, 12, 23, 2, 23, 12),
-(13, 'er', 12, 12, 23, 21, 23, 12),
-(14, 'gwer', 12, 12, 23, 43, 1, 12),
-(15, 'er', 12, 12, 2, 2, 1, 12),
-(16, 'asd', 1, 1, 1, 1, 1, 1),
-(17, '32', 23, 23, 12, 23, 12, 23),
-(18, '2', 1, 1, 2, 2, 1, 1),
-(19, 'recipe2', 21, 21, 12, 2, 12, 21),
-(20, 'recipesb', 1, 1, 1, 1, 1, 1),
-(21, 'ass', 1, 1, 1, 11, 1, 1),
-(22, 'ass', 1, 1, 1, 1, 1, 1),
-(23, 'ass', 1, 1, 2, 1, 1, 1),
-(24, 'cc', 2, 2, 2, 2, 2, 2),
-(25, 'q', 1, 1, 1, 1, 1, 1),
-(26, '12', 12, 12, 1, 1, 1, 1),
-(27, 'qw', 1, 1, 2, 2, 2, 2),
-(28, 'xxxx', 1, 1, 1, 11, 1, 1),
-(29, 'as', 1, 1, -2, 1, 1, 1),
-(30, 'sa', 1, 1, 1, 1, 1, 1),
-(31, 'sa', -1, -1, -1, -1, -1, -1),
-(32, 'sa', 1, 1, 1, 1, 11, 1),
-(33, 'as', 1, 1, 1, 1, 1, -1),
-(34, 'as', 1, 1, 1, 11, 1, -1),
-(35, 'as', 1, 1, 1, 1, 1, -1),
-(36, 'as', 1, 1, 1, 1, 1, 1),
-(37, 'as', 1, 1, 1, 1, 1, -1),
-(38, 'as', 1, 1, 1, 11, 1, -12),
-(39, 'qwe', 0, 0, 0, 0, 0, 0),
-(40, 'qweqwe', 0, 0, 0, 0, 0, 0),
-(41, 'qwe', 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333),
-(42, 'ada', 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, -0.08333333333333333),
-(43, 'ada', 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333, 0.08333333333333333);
+(32, 'sa', 1.0000, 1.0000, 1.0000, 1.0000, 11.0000, 1.0000),
+(36, 'as', 1.0000, 1.0000, 1.0000, 1.0000, 1.0000, 1.0000),
+(39, 'qwe', 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000),
+(40, 'qweqwe', 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000),
+(41, 'qwe', 0.0833, 0.0833, 0.0833, 0.0833, 0.0833, 0.0833),
+(43, 'ada', 0.0833, 0.0833, 0.0833, 0.0833, 0.0833, 0.0833),
+(44, 'as', 0.0833, 0.0833, 0.0833, 0.0833, 0.0833, 0.0833),
+(45, 'as', 0.0833, 0.0833, 0.0000, 0.0833, 0.0833, 0.0833);
 
 -- --------------------------------------------------------
 
@@ -155,31 +126,28 @@ CREATE TABLE `storageingredient` (
 --
 
 INSERT INTO `storageingredient` (`Sid`, `Name`, `Amount`, `Unit`) VALUES
-(1, 'Water', 16.6600, 'Kg'),
-(2, 'Malts', 3.9800, 'Kg'),
-(3, 'Hops', 6.3100, 'Kg'),
-(4, 'Yeasts', 4.3700, 'Kg'),
-(5, 'Sugars', 1.1200, 'Kg'),
-(6, 'Additives', 3.9800, 'Kg');
+(1, 'Water', 0.0000, 'Kg'),
+(2, 'Malts', 0.0000, 'Kg'),
+(3, 'Hops', 0.0000, 'Kg'),
+(4, 'Yeasts', 0.0000, 'Kg'),
+(5, 'Sugars', 0.0000, 'Kg'),
+(6, 'Additives', 0.0000, 'Kg');
 
-
-CREATE TABLE `history` (
-  `Hid` int(11) NOT NULL,
-  `Date` datetime NOT NULL,
-  `Volume` double(16,4) NOT NULL,
-  `WaterQuantity` double(16,4) NOT NULL,
-  `MaltQuantity` double(16,4) DEFAULT NULL,
-  `HopQuantity` double(16,4) NOT NULL,
-  `YeastQuantity` double(16,4) NOT NULL,
-  `SugarQuantity` double(16,4) NOT NULL,
-  `AdditiveQuantity` double(16,4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
+-- 转储表的索引
+--
 
 --
 -- 表的索引 `equipment`
 --
 ALTER TABLE `equipment`
   ADD PRIMARY KEY (`Eid`);
+
+--
+-- 表的索引 `history`
+--
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`Hid`);
 
 --
 -- 表的索引 `note`
@@ -193,9 +161,6 @@ ALTER TABLE `note`
 ALTER TABLE `recipe`
   ADD PRIMARY KEY (`Rid`);
 
-
-ALTER TABLE `history`
-  ADD PRIMARY KEY (`Hid`);
 --
 -- 在导出的表使用AUTO_INCREMENT
 --
@@ -204,19 +169,25 @@ ALTER TABLE `history`
 -- 使用表AUTO_INCREMENT `equipment`
 --
 ALTER TABLE `equipment`
-  MODIFY `Eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- 使用表AUTO_INCREMENT `history`
+--
+ALTER TABLE `history`
+  MODIFY `Hid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- 使用表AUTO_INCREMENT `note`
 --
 ALTER TABLE `note`
-  MODIFY `Nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `Nid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- 使用表AUTO_INCREMENT `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `Rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `Rid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
