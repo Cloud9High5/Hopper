@@ -37,15 +37,15 @@ public class HistoryView extends JFrame {
 		buttonBack.setForeground(new Color(255, 255, 240));
 		contentPane.add(buttonBack);
 		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.setFont(new Font("Bahnschrift", Font.BOLD, 19));
-		btnUpdate.setBackground(new Color(160, 82, 45));
-		btnUpdate.setBounds(902, 559, 93, 23);
-		btnUpdate.setForeground(new Color(255, 255, 240));
-		btnUpdate.setBounds(443, 435, 156, 51);
-		contentPane.add(btnUpdate);
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setFont(new Font("Bahnschrift", Font.BOLD, 19));
+		btnDelete.setBackground(new Color(160, 82, 45));
+		btnDelete.setBounds(902, 559, 93, 23);
+		btnDelete.setForeground(new Color(255, 255, 240));
+		btnDelete.setBounds(443, 435, 156, 51);
+		contentPane.add(btnDelete);
 		
-		JLabel lblNewLabel_1 = new JLabel("Ingredient");
+		JLabel lblNewLabel_1 = new JLabel("History");
 		lblNewLabel_1.setBounds(279, 0, 484, 123);
 		contentPane.add(lblNewLabel_1);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -95,33 +95,35 @@ public class HistoryView extends JFrame {
 				new HomeView(hm, hc);
 				}
 			});
-		btnUpdate.addActionListener(new ActionListener() {
-			private IngredientModel im;
-			private IngredientController ic;
+		btnDelete.addActionListener(new ActionListener() {
 
 			@Override
 				public void actionPerformed(ActionEvent e) {
-				int id = 0;
-				int i = 0;
-				int counter = 0;
-				String str=list_1.getSelectedValue().toString();
-				char[] c = str.toCharArray();
-				
-				for(i = 0; i < c.length; i++) {
-					if(c[i] == ' ') {
-						counter = i;
-						break;
+				try {
+					int id = 0;
+					int i = 0;
+					int counter = 0;
+					String str=list_1.getSelectedValue().toString();
+					char[] c = str.toCharArray();
+					
+					for(i = 0; i < c.length; i++) {
+						if(c[i] == ' ') {
+							counter = i;
+							break;
+						}
 					}
-				}
-				String s = "";
-				for(i = 0; i < counter; i++) {
-					s = s + c[i];
-				}
-				System.out.print(s);
-				id = Integer.parseInt(s);
-				NoteController.deleteNote(id);
-				dispose();
-				new IngredientViewUpdate(im, ic, id);
+					String s = "";
+					for(i = 0; i < counter; i++) {
+						s = s + c[i];
+					}
+					System.out.print(s);
+					id = Integer.parseInt(s);
+					BrewController.deleteHistory(id);
+					list_1.setListData(BrewController.getAllHistory());
+				}catch (NullPointerException ne) {
+			    	new WarningViewSelect();
+			    }
+				
 				}
 			});
 	}

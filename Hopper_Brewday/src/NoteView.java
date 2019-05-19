@@ -112,68 +112,76 @@ public class NoteView extends JFrame {
 
 			@Override
 				public void actionPerformed(ActionEvent e) {
-				int Nid = 0;
-				int Rid = 0;
-				int i = 0;
-				int j = 0;
-				int counter = 0;
-				int counter1 = 0;
-				int counter2 = 0;
-				String str=list_1.getSelectedValue().toString();
-				char[] c1 = str.toCharArray();
-				for(i = 0; i < c1.length; i++) {
-					if(c1[i] == ' ') {
-						counter = i;
-						break;
+				try {
+					int Nid = 0;
+					int Rid = 0;
+					int i = 0;
+					int j = 0;
+					int counter = 0;
+					int counter1 = 0;
+					int counter2 = 0;
+					String str=list_1.getSelectedValue().toString();
+					char[] c1 = str.toCharArray();
+					for(i = 0; i < c1.length; i++) {
+						if(c1[i] == ' ') {
+							counter = i;
+							break;
+						}
 					}
-				}
-				String s = "";
-				for(i = 0; i < counter; i++) {
-					s = s + c1[i];
-				}
-				for(j = c1.length - 1; j >= 0; j--) {
-					if(c1[j] == ' ') {
-						counter1++;
+					String s = "";
+					for(i = 0; i < counter; i++) {
+						s = s + c1[i];
 					}
-					if(counter1 == 3) {
-						counter2 = j;
-						break;
+					for(j = c1.length - 1; j >= 0; j--) {
+						if(c1[j] == ' ') {
+							counter1++;
+						}
+						if(counter1 == 3) {
+							counter2 = j;
+							break;
+						}
 					}
-				}
-				String ss = "";
-				for(j = counter2 + 1; j < c1.length - 3; j++) {
-					ss = ss + c1[j];
-				}
-				Nid = Integer.parseInt(s);
-				Rid = Integer.parseInt(ss);
-				new NoteViewUpdate(nm, nc, Nid, Rid);
-				dispose();
+					String ss = "";
+					for(j = counter2 + 1; j < c1.length - 3; j++) {
+						ss = ss + c1[j];
+					}
+					Nid = Integer.parseInt(s);
+					Rid = Integer.parseInt(ss);
+					new NoteViewUpdate(nm, nc, Nid, Rid);
+					dispose();
+				}catch (NullPointerException ne) {
+			    	new WarningViewSelect();
+			    }
 				}
 			});
 		btnDelete.addActionListener(new ActionListener() {
 
 			@Override
 				public void actionPerformed(ActionEvent e) {
-				int id = 0;
-				int i = 0;
-				int counter = 0;
-				String str=list_1.getSelectedValue().toString();
-				char[] c = str.toCharArray();
-				
-				for(i = 0; i < c.length; i++) {
-					if(c[i] == ' ') {
-						counter = i;
-						break;
+				try {
+					int id = 0;
+					int i = 0;
+					int counter = 0;
+					String str=list_1.getSelectedValue().toString();
+					char[] c = str.toCharArray();
+					
+					for(i = 0; i < c.length; i++) {
+						if(c[i] == ' ') {
+							counter = i;
+							break;
+						}
 					}
-				}
-				String s = "";
-				for(i = 0; i < counter; i++) {
-					s = s + c[i];
-				}
-				System.out.print(s);
-				id = Integer.parseInt(s);
-				NoteController.deleteNote(id);
-				list_1.setListData(NoteController.getAllNote());
+					String s = "";
+					for(i = 0; i < counter; i++) {
+						s = s + c[i];
+					}
+					System.out.print(s);
+					id = Integer.parseInt(s);
+					NoteController.deleteNote(id);
+					list_1.setListData(NoteController.getAllNote());
+				}catch (NullPointerException ne) {
+			    	new WarningViewSelect();
+			    }
 				}
 			});
 	}

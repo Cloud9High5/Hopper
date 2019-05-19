@@ -63,12 +63,16 @@ public class IngredientViewUpdate extends JFrame {
 		        if(length<s.length) {
 		        	//new WarningView();
 		        }
-		        System.out.print(Double.valueOf(amount.toString()));
-		        
-				new IngredientController(ig);
-				IngredientController.updateIngredient(new IngredientModel(Double.parseDouble(textAmount.getText())), Sid);
-				dispose();
-				new IngredientView(ig, c);
+		        boolean a;
+				a = textAmount.getText().matches("^\\d+(\\.\\d+)?$");
+				if(!a) {
+					new WarningViewNumber();
+				}else {
+					new IngredientController(ig);
+					IngredientController.updateIngredient(new IngredientModel(Double.parseDouble(textAmount.getText())), Sid);
+					dispose();
+					new IngredientView(ig, c);
+				}
 			}
 		});
 		

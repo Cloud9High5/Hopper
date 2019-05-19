@@ -22,24 +22,20 @@ public class BrewController {
 		String[] equipment = ec.getAllEquipment();
 		String[] temp = new String[3];
 		Double[] q = new Double[equipment.length];
-	
 		for(int count= 0;count<equipment.length&&equipment[count]!=null;count++) {
 			temp = equipment[count].split("\\|");
-				
 			q[count] = Double.valueOf(temp[2]);
 				//System.out.println(q[count]);
 		}
 		for(int count = 0;count<equipment.length&&equipment[count]!=null;count++) {
 			
 			if(q[count]>=volumn) {
-					
 				return 1;
 				}
-			
 		}
 			return 0;
-			
-		}
+	}
+	
 	public BrewController(BrewModel b) {
 		this.b = b;
 	}
@@ -55,7 +51,21 @@ public class BrewController {
 		});
 		timeAction.start();;
 	}
-	
+	public static int deleteHistory(Integer Hid) {
+	    Connection conn = MyDBUtil.getConn();
+	    int i = 0;
+	    String sql = "delete from history where Hid='" + Hid + "'";
+	    PreparedStatement pstmt;
+	    try {
+	        pstmt = (PreparedStatement) conn.prepareStatement(sql);
+	        i = pstmt.executeUpdate();
+	        pstmt.close();
+	        conn.close();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return i;
+	}
 	
 	public static Double[] getIngredientAmount() {//get amount in storage
 		

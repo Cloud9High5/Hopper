@@ -66,9 +66,23 @@ public class EquipmentViewAdd extends JFrame{
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//add
-				EquipmentController.insertEquipment(new EquipmentModel(textField.getText(),Double.parseDouble(textField_1.getText())));
-				dispose();
-				new EquipmentView(m, c);
+				try{
+					boolean a0;
+					a0 = textField_1.getText().matches("^\\d+(\\.\\d+)?$");
+					if("".equals(textField.getText()) || "".equals(textField_1.getText())) {
+						new WarningViewBlank();
+					}else {
+						if(!a0) {
+							new WarningViewNumber();
+						}else {
+							EquipmentController.insertEquipment(new EquipmentModel(textField.getText(),Double.parseDouble(textField_1.getText())));
+							dispose();
+							new EquipmentView(m, c);
+						}
+					}
+				} catch (NumberFormatException ne) {
+			    	new WarningViewBlank();
+			    }
 			}
 		});
 	}

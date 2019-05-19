@@ -111,84 +111,96 @@ public class RecipeViewCreate extends JFrame {
 					}
 				});
 			btnAddNote.addActionListener(new ActionListener() {
-
 				private NoteModel nm;
 				private NoteController nc;
-
 				@Override
 					public void actionPerformed(ActionEvent e) {
-					int id = 0;
-					int i = 0;
-					int counter = 0;
-					String str=list_1.getSelectedValue().toString();
-					char[] c = str.toCharArray();
-					
-					for(i = 0; i < c.length; i++) {
-						if(c[i] == ' ') {
-							counter = i;
-							break;
+					try {
+						int id = 0;
+						int i = 0;
+						int counter = 0;
+						String str=list_1.getSelectedValue().toString();
+						char[] c = str.toCharArray();
+						
+						for(i = 0; i < c.length; i++) {
+							if(c[i] == ' ') {
+								counter = i;
+								break;
+							}
 						}
+						String s = "";
+						for(i = 0; i < counter; i++) {
+							s = s + c[i];
+						}
+						System.out.print(s);
+						id = Integer.parseInt(s);
+						new RecipeViewMoreNote(nm, nc, id);
+					}catch (NullPointerException ne) {
+						new WarningViewSelect();
 					}
-					String s = "";
-					for(i = 0; i < counter; i++) {
-						s = s + c[i];
-					}
-					System.out.print(s);
-					id = Integer.parseInt(s);
-					new RecipeViewMoreNote(nm, nc, id);
+					
 					}
 				});
 			btnUpdate.addActionListener(new ActionListener() {
 				private RecipeModel rm;
 				private RecipeController rc;
-
 				@Override
 					public void actionPerformed(ActionEvent e) {
-					int id = 0;
-					int i = 0;
-					int counter = 0;
-					String str=list_1.getSelectedValue().toString();
-					char[] c = str.toCharArray();
-					
-					for(i = 0; i < c.length; i++) {
-						if(c[i] == ' ') {
-							counter = i;
-							break;
+					try {
+						int id = 0;
+						int i = 0;
+						int counter = 0;
+						String str=list_1.getSelectedValue().toString();
+						char[] c = str.toCharArray();
+						
+						for(i = 0; i < c.length; i++) {
+							if(c[i] == ' ') {
+								counter = i;
+								break;
+							}
 						}
+						String s = "";
+						for(i = 0; i < counter; i++) {
+							s = s + c[i];
+						}
+						System.out.print(s);
+						id = Integer.parseInt(s);
+						dispose();
+						new RecipeViewUpdate(rm, rc, id);
+					}catch (NullPointerException ne) {
+						new WarningViewSelect();
 					}
-					String s = "";
-					for(i = 0; i < counter; i++) {
-						s = s + c[i];
-					}
-					System.out.print(s);
-					id = Integer.parseInt(s);
-					dispose();
-					new RecipeViewUpdate(rm, rc, id);
+					
 					}
 				});
 			btnDelete.addActionListener(new ActionListener() {
 				@Override
 					public void actionPerformed(ActionEvent e) {
-					int id = 0;
-					int i = 0;
-					int counter = 0;
-					String str=list_1.getSelectedValue().toString();
-					char[] c = str.toCharArray();
-					
-					for(i = 0; i < c.length; i++) {
-						if(c[i] == ' ') {
-							counter = i;
-							break;
+					try {
+						int id = 0;
+						int i = 0;
+						int counter = 0;
+						String str=list_1.getSelectedValue().toString();
+						char[] c = str.toCharArray();
+						
+						for(i = 0; i < c.length; i++) {
+							if(c[i] == ' ') {
+								counter = i;
+								break;
+							}
 						}
+						String s = "";
+						for(i = 0; i < counter; i++) {
+							s = s + c[i];
+						}
+						System.out.print(s);
+						id = Integer.parseInt(s);
+					
+						RecipeController.deleteRecipe(id);
+						list_1.setListData(RecipeController.getAllRecipe());
+					} catch (NullPointerException ne) {
+						new WarningViewSelect();
 					}
-					String s = "";
-					for(i = 0; i < counter; i++) {
-						s = s + c[i];
-					}
-					System.out.print(s);
-					id = Integer.parseInt(s);
-					RecipeController.deleteRecipe(id);
-					list_1.setListData(RecipeController.getAllRecipe());
 					}
 				});
 		}

@@ -94,7 +94,7 @@ public class RecommandRecipeView extends JFrame{
     	recipe.setAdditiveQuantity(amounts[5]);
 		
 		textWater = new JTextField();
-		textWater.setBounds(113, 142, 33, 31);
+		textWater.setBounds(113, 142, 76, 31);
 		textWater.setEditable(false);
 		textWater.setText(String.valueOf(recipe.getWaterQuantity()));
 		panel.add(textWater);
@@ -108,7 +108,7 @@ public class RecommandRecipeView extends JFrame{
 		
 		textMalt = new JTextField();
 		textMalt.setColumns(10);
-		textMalt.setBounds(113, 182, 33, 31);
+		textMalt.setBounds(113, 182, 76, 31);
 		textMalt.setEditable(false);
 		textMalt.setText(String.valueOf(recipe.getMaltQuantity()));
 		panel.add(textMalt);
@@ -121,7 +121,7 @@ public class RecommandRecipeView extends JFrame{
 		
 		textHop = new JTextField();
 		textHop.setColumns(10);
-		textHop.setBounds(387, 143, 33, 31);
+		textHop.setBounds(376, 142, 71, 31);
 		textHop.setEditable(false);
 		textHop.setText(String.valueOf(recipe.getHopQuantity()));
 		panel.add(textHop);
@@ -134,7 +134,7 @@ public class RecommandRecipeView extends JFrame{
 		
 		textYeast = new JTextField();
 		textYeast.setColumns(10);
-		textYeast.setBounds(387, 180, 33, 31);
+		textYeast.setBounds(376, 179, 71, 31);
 		textYeast.setEditable(false);
 		textYeast.setText(String.valueOf(recipe.getYeastQuantity()));
 		panel.add(textYeast);
@@ -147,7 +147,7 @@ public class RecommandRecipeView extends JFrame{
 		
 		textAdditive = new JTextField();
 		textAdditive.setColumns(10);
-		textAdditive.setBounds(669, 183, 33, 31);
+		textAdditive.setBounds(669, 183, 62, 31);
 		textAdditive.setEditable(false);
 		textAdditive.setText(String.valueOf(recipe.getAdditiveQuantity()));
 		panel.add(textAdditive);
@@ -155,7 +155,7 @@ public class RecommandRecipeView extends JFrame{
 		JLabel label = new JLabel("kg");
 		label.setForeground(new Color(255, 255, 240));
 		label.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label.setBounds(158, 142, 33, 21);
+		label.setBounds(199, 143, 33, 21);
 		panel.add(label);
 		
 		JLabel lblWater = new JLabel("Water");
@@ -166,7 +166,7 @@ public class RecommandRecipeView extends JFrame{
 		
 		textSugar = new JTextField();
 		textSugar.setColumns(10);
-		textSugar.setBounds(669, 145, 33, 31);
+		textSugar.setBounds(669, 145, 62, 31);
 		textSugar.setEditable(false);
 		textSugar.setText(String.valueOf(recipe.getSugarQuantity()));
 		panel.add(textSugar);
@@ -174,31 +174,31 @@ public class RecommandRecipeView extends JFrame{
 		JLabel label_1 = new JLabel("kg");
 		label_1.setForeground(new Color(255, 255, 240));
 		label_1.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_1.setBounds(156, 183, 33, 21);
+		label_1.setBounds(199, 188, 33, 21);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("kg");
 		label_2.setForeground(new Color(255, 255, 240));
 		label_2.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_2.setBounds(430, 148, 33, 21);
+		label_2.setBounds(463, 146, 33, 21);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("kg");
 		label_3.setForeground(new Color(255, 255, 240));
 		label_3.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_3.setBounds(430, 189, 33, 21);
+		label_3.setBounds(463, 188, 33, 21);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel("kg");
 		label_4.setForeground(new Color(255, 255, 240));
 		label_4.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_4.setBounds(712, 155, 33, 21);
+		label_4.setBounds(741, 152, 33, 21);
 		panel.add(label_4);
 		
 		JLabel label_5 = new JLabel("kg");
 		label_5.setForeground(new Color(255, 255, 240));
 		label_5.setFont(new Font("Bahnschrift", Font.BOLD, 20));
-		label_5.setBounds(712, 188, 33, 21);
+		label_5.setBounds(741, 188, 33, 21);
 		panel.add(label_5);
 		
 		JLabel lblRecipeName = new JLabel("Recipe name:");

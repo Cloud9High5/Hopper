@@ -75,9 +75,18 @@ public class NoteViewUpdate extends JFrame {
 			private NoteModel nm;
 			private NoteController nc;
 			public void actionPerformed(ActionEvent e) {
-				NoteController.updateNote(new NoteModel(textName.getText(),textArea.getText(), new Timestamp(timemillis)), Nid, Rid);
-				new NoteView(nm, nc);
-				dispose();
+				try {
+					if("".equals(textName.getText()) || "".equals(textArea.getText())) {
+						new WarningViewBlank();
+					}else {
+						NoteController.updateNote(new NoteModel(textName.getText(),textArea.getText(), new Timestamp(timemillis)), Nid, Rid);
+						new NoteView(nm, nc);
+						dispose();
+					}
+				}catch (NumberFormatException ne) {
+			    	new WarningViewBlank();
+			    }
+				
 			}
 		});
 	}

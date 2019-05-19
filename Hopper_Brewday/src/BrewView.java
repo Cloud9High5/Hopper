@@ -105,43 +105,39 @@ public class BrewView extends JFrame {
 			private BrewController bc = new BrewController(bm);
 			@Override
 				public void actionPerformed(ActionEvent e) {
-					
-					
 					//check
 					String input = editorPane_3.getText().toString();
 					char[] inputchar = input.toCharArray();
 					int length = 0;
-					for(int count = 0;count<inputchar.length;count++) {
-						int check = 0;
-						if((inputchar[count] >='0')&&(inputchar[count]<='9')) {
-							length++;
+					if("".equals(editorPane_3.getText())) {
+						new WarningViewBlank();
+					}else {
+						for(int count = 0;count<inputchar.length;count++) {
+							int check = 0;
+							if((inputchar[count] >='0')&&(inputchar[count]<='9')) {
+								length++;
+							}
+							else if((inputchar[count]=='.')&&(count>0)&&(count<inputchar.length-1)&&(check==0)) {
+								length++;
+								check =1;
+							}
 						}
-						else if((inputchar[count]=='.')&&(count>0)&&(count<inputchar.length-1)&&(check==0)) {
-							length++;
-							check =1;
-						}
-						
+						if(length<inputchar.length) {
+					        	new BrewInputWarning(0);
+					    }else{
+					    	if(bc.compareEquipment(Double.valueOf(editorPane_3.getText()))==0) {
+					    		new BrewInputWarning(1);
+					    	}else {
+								bm.setBatchSize(Double.valueOf(editorPane_3.getText()));
+								// Controller decides what the click means.
+								dispose();
+								//m.setBatchSize(Double.valueOf(editorPane_3.getText()));
+								double volume = Double.parseDouble(editorPane_3.getText());
+								new BrewSelectView(bm,bc, volume);
+								
+							}
+					    }
 					}
-					 if(length<inputchar.length) {
-				        	new BrewInputWarning(0);
-				    }else{
-				
-				    	if(bc.compareEquipment(Double.valueOf(editorPane_3.getText()))==0) {
-				    		
-				    		new BrewInputWarning(1);
-				    	}else {
-				    	
-				    	
-							bm.setBatchSize(Double.valueOf(editorPane_3.getText()));
-						
-							// Controller decides what the click means.
-							dispose();
-							
-							//m.setBatchSize(Double.valueOf(editorPane_3.getText()));
-							double volume = Double.parseDouble(editorPane_3.getText());
-							new BrewSelectView(bm,bc, volume);
-							
-							}}
 				}
 			});
 		

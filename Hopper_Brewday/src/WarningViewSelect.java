@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class WarningViewBlank extends JFrame {
+public class WarningViewSelect extends JFrame {
 
 	/**
 	 * 
@@ -17,7 +17,7 @@ public class WarningViewBlank extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
-	public WarningViewBlank() {
+	public WarningViewSelect() {
 		setTitle("Warning");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 259);
@@ -31,7 +31,7 @@ public class WarningViewBlank extends JFrame {
 		label.setBounds(42, 69, 85, 63);
 		contentPane.add(label);
 		
-		JLabel lblNewLabel = new JLabel("Please fill all the blank!");
+		JLabel lblNewLabel = new JLabel("Please select one from the list!");
 		lblNewLabel.setFont(new Font("Bahnschrift", Font.PLAIN, 19));
 		lblNewLabel.setBounds(139, 69, 332, 63);
 		contentPane.add(lblNewLabel);

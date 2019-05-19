@@ -47,7 +47,7 @@ public class BrewSelectView extends JFrame {
 		Missingbutton.setFont(new Font("Bahnschrift", Font.BOLD, 28));
 		Missingbutton.setForeground(new Color(255, 255, 240));
 		Missingbutton.setBackground(new Color(160, 82, 45));
-		Missingbutton.setBounds(291, 240, 432, 122);
+		Missingbutton.setBounds(250, 240, 500, 122);
 		contentPane.add(Missingbutton);
 		
 		JButton btnBack = new JButton("Back to Home page");

@@ -293,16 +293,22 @@ public class RecipeView extends JFrame{
 						a4 = textSugar.getText().matches("^\\d+(\\.\\d+)?$");
 						a5 = textAdditive.getText().matches("^\\d+(\\.\\d+)?$");
 						a6 = textField.getText().matches("^\\d+(\\.\\d+)?$");
-						if(!(a0 && a1 && a2 && a3 && a4 && a5)) {
-							new WarningViewNumber();
-						}else{
-							RecipeController.insertRecipe(new RecipeModel(textName.getText(),
-									Double.parseDouble(textWater.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textMalt.getText())/Double.parseDouble(textField.getText()),
-									Double.parseDouble(textHop.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textYeast.getText())/Double.parseDouble(textField.getText()),
-									Double.parseDouble(textSugar.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textAdditive.getText())/Double.parseDouble(textField.getText())));
-							dispose();
-							new RecipeViewCreate(rm, rc);
-							new RecipeViewNote(nm, nc, null);
+						if("".equals(textName.getText()) || "".equals(textWater.getText()) || "".equals(textMalt.getText())
+							|| "".equals(textHop.getText()) || "".equals(textYeast.getText()) || "".equals(textSugar.getText())
+							|| "".equals(textAdditive.getText()) || "".equals(textField.getText())) {
+							new WarningViewBlank();
+						}else {
+							if(!(a0 && a1 && a2 && a3 && a4 && a5 && a6)) {
+								new WarningViewNumber();
+							}else{
+								RecipeController.insertRecipe(new RecipeModel(textName.getText(),
+										Double.parseDouble(textWater.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textMalt.getText())/Double.parseDouble(textField.getText()),
+										Double.parseDouble(textHop.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textYeast.getText())/Double.parseDouble(textField.getText()),
+										Double.parseDouble(textSugar.getText())/Double.parseDouble(textField.getText()),Double.parseDouble(textAdditive.getText())/Double.parseDouble(textField.getText())));
+								dispose();
+								new RecipeViewCreate(rm, rc);
+								new RecipeViewNote(nm, nc, null);
+							}
 						}
 				    } catch (NumberFormatException ne) {
 				    	new WarningViewBlank();
