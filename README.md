@@ -1,4 +1,4 @@
-# COMP3053 - [Your Group Name Here]
+# COMP3053 - Hopper
 This is the code and documentations of **[your group name here]**, COMP3053, Software Development Workshop III, BNU-HKBU United International College.
 
 ## Message from the Course Team
